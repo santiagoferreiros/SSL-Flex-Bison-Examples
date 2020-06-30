@@ -38,7 +38,7 @@ int main() {
     /* Acciónes posteriores a la ejecución del analizador léxico, 
     sirven por ejemplo, para hacer un informen de resumen.1 */
 
-    printf ("La suma de las longitudes de todas las cadadenas reconocidas es %d",acum);
+    printf ("La suma de las longitudes de todas las cadenas reconocidas es %d",acum);
 
     return 0;
 }
