@@ -12,5 +12,6 @@ C[^aeiou]R {printf("Se encontro una secuencia de caracteres que no posee vocales
 [a-z] {printf("Se encontro una letra minuscula %c \n", yytext[0]);}
 "jaja"$ {printf("Se encontro la secuencia \"jaja\" antes del fin de una linea \n");}
 
+
 %%
 
