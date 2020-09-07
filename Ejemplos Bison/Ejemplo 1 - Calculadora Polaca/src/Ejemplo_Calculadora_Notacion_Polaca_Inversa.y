@@ -6,6 +6,9 @@
 #include <ctype.h>
 int yylex();
 int yyerror (char *s);
+int yywrap(){
+return(1);
+}
 %}
 
 %token NUM
@@ -37,6 +40,11 @@ int yyerror (char *s)  /* Llamada por yyparse ante un error */
 
 int main ()
 {
-  printf("Ingrese una expresion aritmetica en notación polaca inversa para resolver:\n");
+
+#ifdef BISON_DEBUG
+        yydebug = 1;
+#endif
+
+  printf("Ingrese una expresion aritmetica en notacion polaca inversa para resolver:\n");
   yyparse ();
 }

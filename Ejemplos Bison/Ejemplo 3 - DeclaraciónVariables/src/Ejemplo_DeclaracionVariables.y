@@ -11,7 +11,6 @@ int contador=0;
 char* tipo;
 
 int yylex();
-
 int yywrap(){
 	return(1);
 }
@@ -69,7 +68,8 @@ caracterDeCorte:	';' | '\n'
 
 int main ()
 {
-
-  //yydebug = 1; --> Utilizar en caso de MODO DEBUG
+#ifdef BISON_DEBUG
+        yydebug = 1;
+#endif
   yyparse ();
 }

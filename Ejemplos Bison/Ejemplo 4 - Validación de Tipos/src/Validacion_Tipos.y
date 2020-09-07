@@ -3,9 +3,7 @@
 #include <ctype.h>
 #include <string.h>
 
-
 int yylex();
-
 int yywrap(){
 	return(1);
 }
@@ -121,5 +119,8 @@ expresion:  NUMERO_ENTERO {$<mystruct>$.tipo=$<mystruct>1.tipo;$<mystruct>$.valo
 
 int main ()
 {
+    #ifdef BISON_DEBUG
+        yydebug = 1;
+#endif
   yyparse ();
 }
