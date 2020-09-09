@@ -35,7 +35,7 @@ TARGETS:=$(patsubst $(SRCDIR)/%.l,%.$(FILE_EXT),$(SRC))
 	@echo "<<< lex.yy.c creado. >>>"
 	@echo ""
 	@echo "<<< Compilando y enlazando con libfl.a y liby.a >>>"
-	$(CC) $(CFLAGS) $(patsubst $(SRCDIR)/%.l,$(ODIR)/%.tab.c,$<) $(patsubst $(SRCDIR)/%.l,$(ODIR)/%.tab.h,$<) $(ODIR)/lex.yy.c $(LIBS) -o $@ 
+	$(CC) $(CFLAGS) $(patsubst $(SRCDIR)/%.l,$(ODIR)/%.tab.c,$<) $(patsubst $(SRCDIR)/%.l,$(ODIR)/%.tab.h,$<) $(ODIR)/lex.yy.c $(SRCDIR)/calc.c $(LIBS) -o $@ 
 	@echo "<<< $@ creado. >>>"
 	@echo ""
 
