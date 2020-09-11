@@ -1,13 +1,16 @@
 %{
-#include <stdio.h>
-#include <string.h>
-#include <math.h>  
-#include "calc.h"
-int yylex ();
-int yyerror (char*);
+  #include <stdio.h>
+  #include <math.h>  
+  #include "calc.h"
+
+void yyerror(char const *s){fprintf (stderr, "%s\n> ", s);}
+
+int yylex();
+
 int yywrap(){
 return(1);
 }
+
 %}
 
 %union {
@@ -16,42 +19,31 @@ return(1);
 }
 
 %token <dval>  NUM      
-%token <sval> VAR ARIT_FNCT NAT_FNCT FNCT
-%token <char*> DEF;
+%token <sval> VAR FNCT
 %type  <dval>  exp
 
 %right '='
 %left '-' '+'
 %left '*' '/'
-%right NEG
+%left NEG
 %right '^'     
 %%
 
-input:   /* vacío */
+input:
         | input line
 ;
 
 line:
   '\n'
 | exp '\n'   	{ printf ("%.10g\n> ", $1);	}
-| native '\n'	{				}
 | error '\n' 	{ yyerrok;              	}
-;
-
-native:
-  NAT_FNCT '(' exp ')' { if(!strcmp($1->name, "print"))
-			   printf ("%.10g\n> ", $3); 
-			 else
-			   printf ("%s->Ainda não implementado :( \n> ",$1->name);
-                       }
-//  DEF
 ;
 
 exp:
   NUM                { $$ = $1;                         	}
 | VAR                { $$ = $1->value.var;              	}
 | VAR '=' exp        { $$ = $3; $1->value.var = $3;     	}
-| ARIT_FNCT '(' exp ')' { $$ = (*($1->value.fnctptr))($3);	}
+| FNCT '(' exp ')'   { $$ = (*($1->value.fnctptr))($3);	  }
 | exp '+' exp        { $$ = $1 + $3;                    	}
 | exp '-' exp        { $$ = $1 - $3;                    	}
 | exp '*' exp        { $$ = $1 * $3;                    	}
@@ -63,7 +55,11 @@ exp:
 
 %%
 
+// Define variable puntero que apunta a la tabla de símbolos (TS).
+
 symrec *sym_table;
+
+// Define una estructura para cargar en la TS las funciones aritméticas.
 
 struct init
 {
@@ -71,23 +67,7 @@ struct init
   double (*fnct) (double);
 };
 
-struct u_func
-{
-  char const *fname;
-  double (*fnct) (double);
-};
-
-struct init const int_fncts[] =
-{
-  { "print", 	0 },
-  { "load",  	0 },
-  { "if",    	0 },
-  { "for",   	0 },
-  { "while", 	0 },
-  { "func",	0 },
-  { "return",	0 },
-  { 0,       	0 },
-};
+// Declaramos una vector de tipo init llamado arith_fncts para almacenar todas las funciones en la TS.
 
 struct init const arith_fncts[] =
 {
@@ -100,18 +80,19 @@ struct init const arith_fncts[] =
   { 0, 0 },
 };
 
+//Definimos la función init_table para cargar el vector de funciones en la TS.
+
 static void init_table(){
   int i;
   for (i = 0; arith_fncts[i].fname != 0; i++)
     {
-      symrec *ptr = putsym (arith_fncts[i].fname, TYP_ARIT_FNCT);
+      symrec *ptr = putsym (arith_fncts[i].fname, TYP_FNCT);
       ptr->value.fnctptr = arith_fncts[i].fnct;
     }
-  for (i = 0; int_fncts[i].fname != 0; i++)
-    {
-      symrec *ptr = putsym (int_fncts[i].fname, TYP_NAT_FNCT);
-    }
+
 }
+
+//Función principal, inicializa la TS e invoca al parser.
 
 int main (int argc, char const* argv[])
 {
@@ -119,4 +100,3 @@ int main (int argc, char const* argv[])
   init_table();
   return yyparse();
 }
-

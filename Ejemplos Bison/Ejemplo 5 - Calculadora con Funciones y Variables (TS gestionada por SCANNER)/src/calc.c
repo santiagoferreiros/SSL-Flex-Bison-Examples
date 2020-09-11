@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void yyerror(char const *s){fprintf (stderr, "%s\n> ", s);}
+//Definición de la función putsym
 
 symrec *putsym (char const *sym_name, int sym_type)
 {
@@ -16,6 +16,8 @@ symrec *putsym (char const *sym_name, int sym_type)
   sym_table = ptr;
   return ptr;
 }
+
+//Definición de la función getsym
 
 symrec *getsym (char const *sym_name)
 {
