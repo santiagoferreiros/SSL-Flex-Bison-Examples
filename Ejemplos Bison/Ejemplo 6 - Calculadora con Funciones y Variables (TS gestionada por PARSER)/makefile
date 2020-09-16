@@ -5,6 +5,7 @@ FILE_EXT:=out
 else
 FILE_EXT:=exe
 LIBS+=-L lib
+CFLAGS+=-m32
 endif
 
 SRCDIR:=src
