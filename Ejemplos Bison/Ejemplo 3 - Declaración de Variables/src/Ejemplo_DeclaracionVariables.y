@@ -58,7 +58,7 @@ identificadorA:		  	IDENTIFICADOR {printf("Se declara el identificador %s de tip
 						| error {if(flag_error==0){printf("Falta identificador \n");flag_error=1;};}
 ;
 
-expresion:				NUM {$<entero>$=$<entero>1}
+expresion:				NUM {$<entero>$=$<entero>1;}
 						| error {flag_error=1;printf("Valor no reconocido para asignar \n");}
 ;
 
