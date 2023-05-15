@@ -8,7 +8,6 @@
 #include "misfunciones.h"
 
 // Podemos definir variables globales para nuestro analizador léxico
-
 int acum = 0;
 %}
 
@@ -26,20 +25,26 @@ DIGITO_HEXADECIMAL [0-9A-Fa-f]
 
 int main() {
    
-    /* Acciones previas a la invocación den analizador léxico */
-
+    /* Acciones previas a la invocación del analizador léxico */
+    //extern FILE *yyin, *yyout;
     yyin = fopen("entrada.txt", "r");
-    yyout = fopen("salida.txt", "w");	
+    yyout = fopen("salida.txt", "w");
 
     /* Invocación del analizador léxico */
 
     yylex();
 	
     /* Acciónes posteriores a la ejecución del analizador léxico, 
-    sirven por ejemplo, para hacer un informen de resumen.1 */
+    sirven por ejemplo, para hacer un informe de resumen. */
 
-    printf ("La suma de las longitudes de todas las cadenas reconocidas es %d",acum);
+    printf("La suma de las longitudes de todas las cadenas reconocidas es %d\n",acum);
 
+    fclose(yyin);
+    fclose(yyout);
+
+    printf("Presione ENTER para continuar...\n");
+    getchar();
+	
     return 0;
 }
 

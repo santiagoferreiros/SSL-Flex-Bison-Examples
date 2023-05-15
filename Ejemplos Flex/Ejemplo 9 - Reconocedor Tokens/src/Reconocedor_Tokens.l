@@ -43,13 +43,15 @@ int main(){
 
     while(tok = yylex()) {
 
-        printf("El numero de token es: %d \n", tok);
-        if(tok == NUMBER){
-        printf("Al tratarse de un numero su valor entero asociado es: %d \n",yylval);
-        }
+		printf("El numero de token es: %d \n", tok);
+		if(tok == NUMBER){
+		printf("Al tratarse de un numero su valor entero asociado es: %d \n",yylval);
+		}
 
-   }
+	}
 
-   return 0;
-
- }
+	printf("Presione ENTER para continuar...\n");
+	getchar();
+	
+	return 0;
+}

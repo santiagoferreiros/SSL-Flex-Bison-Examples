@@ -99,7 +99,11 @@ static void init_table(){
 
 int main (int argc, char const* argv[])
 {
-  printf("> ");
-  init_table();
-  return yyparse();
+    #if YYDEBUG
+      yydebug = 1;
+    #endif
+
+	printf("> ");
+	init_table();
+	return yyparse();
 }

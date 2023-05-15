@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-#define YYDEBUG 1
 
 int flag_error=0;
 int contador=0;
@@ -68,8 +67,9 @@ caracterDeCorte:	';' | '\n'
 
 int main ()
 {
-#ifdef BISON_DEBUG
-        yydebug = 1;
-#endif
-  yyparse ();
+    #if YYDEBUG
+      yydebug = 1;
+    #endif
+ 
+	yyparse ();
 }

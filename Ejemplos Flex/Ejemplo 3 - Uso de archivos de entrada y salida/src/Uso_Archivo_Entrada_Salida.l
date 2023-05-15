@@ -16,8 +16,15 @@
 int main() {
    
     yyin = fopen("entrada.txt", "r");
-    yyout = fopen("salida.txt", "w");	
+    yyout = fopen("salida.txt", "w");
+	
     yylex();
+	
+    fclose(yyin);
+    fclose(yyout);
+	
+    printf("Presione ENTER para continuar...\n");
+    getchar();
 	
     return 0;
 }

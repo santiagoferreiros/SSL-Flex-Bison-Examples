@@ -4,6 +4,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <ctype.h>
+
 int yylex ();
 int yyerror (char*);
 int yywrap(){
@@ -50,17 +51,17 @@ exp:    NUM               { $<dval>$ = $<dval>1; }
 ;
 
 %%
-int yyerror (char *mensaje)  /* Fucion de error */
+int yyerror (char *mensaje)  /* Funcion de error */
 {
-  printf ("Error: %s\n", mensaje);
+	printf ("Error: %s\n", mensaje);
 }
 
 void main(){
 
-   #ifdef BISON_DEBUG
-        yydebug = 1;
-#endif    
+    #if YYDEBUG
+      yydebug = 1;
+    #endif
  
-   printf("Ingrese una expresion aritmetica para resolver (decimal, octal o hexadecimal):\n");
-   yyparse();
+	printf("Ingrese una expresion aritmetica para resolver (decimal, octal o hexadecimal):\n");
+	yyparse();
 }

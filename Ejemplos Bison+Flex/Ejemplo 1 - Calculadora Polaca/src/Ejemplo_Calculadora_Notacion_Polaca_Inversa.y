@@ -4,11 +4,13 @@
 #include <math.h>
 #include <stdio.h>
 #include <ctype.h>
+
 int yylex();
 int yyerror (char *s);
 int yywrap(){
 return(1);
 }
+
 %}
 
 %token NUM
@@ -35,16 +37,19 @@ exp:      NUM             { $$ = $1;         }
 
 int yyerror (char *s)  /* Llamada por yyparse ante un error */
 {
-  printf ("%s\n", s);
+	printf ("%s\n", s);
 }
 
 int main ()
 {
 
-#ifdef BISON_DEBUG
-        yydebug = 1;
-#endif
+    #if YYDEBUG
+      yydebug = 1;
+    #endif
 
-  printf("Ingrese una expresion aritmetica en notacion polaca inversa para resolver:\n");
-  yyparse ();
+	printf("Ingrese una expresion aritmetica en notacion polaca inversa para resolver:\n");
+	yyparse();
+	
+	printf("Presione ENTER para continuar...\n");
+    getchar();
 }

@@ -1,5 +1,3 @@
-
-
 %{
 #include "Ejemplo_DeclaracionVariables.tab.h"
 #include <stdio.h>
@@ -20,4 +18,3 @@ int|char|float|double {strcpy(yylval.cadena,yytext); return TIPO_DATO;}
 .
 
 %%
-

@@ -119,8 +119,9 @@ expresion:  NUMERO_ENTERO {$<mystruct>$.tipo=$<mystruct>1.tipo;$<mystruct>$.valo
 
 int main ()
 {
-    #ifdef BISON_DEBUG
-        yydebug = 1;
-#endif
-  yyparse ();
+    #if YYDEBUG
+      yydebug = 1;
+    #endif
+	
+	yyparse ();
 }
