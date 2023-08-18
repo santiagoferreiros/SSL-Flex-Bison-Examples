@@ -1,0 +1,227 @@
+Estado 12 conflictos: 3 desplazamiento(s)/reducción(ones)
+Estado 13 conflictos: 3 desplazamiento(s)/reducción(ones)
+Estado 14 conflictos: 3 desplazamiento(s)/reducción(ones)
+
+
+Gramática
+
+    0 $accept: input $end
+
+    1 input: /* vacío */
+    2      | input line
+
+    3 line: '\n'
+    4     | expresion '\n'
+
+    5 expresion: NUMERO_ENTERO
+    6          | NUMERO_REAL
+    7          | expresion '+' expresion
+    8          | expresion '-' expresion
+    9          | expresion '*' expresion
+
+
+Terminales con las reglas donde aparecen
+
+$end (0) 0
+'\n' (10) 3 4
+'*' (42) 9
+'+' (43) 7
+'-' (45) 8
+error (256)
+NUMERO_ENTERO (258) 5
+NUMERO_REAL (259) 6
+
+
+No terminales con las reglas donde aparecen
+
+$accept (9)
+    en la izquierda: 0
+input (10)
+    en la izquierda: 1 2, en la derecha: 0 2
+line (11)
+    en la izquierda: 3 4, en la derecha: 2
+expresion (12)
+    en la izquierda: 5 6 7 8 9, en la derecha: 4 7 8 9
+
+
+estado 0
+
+    0 $accept: . input $end
+    1 input: .
+    2      | . input line
+
+    $default  reduce usando la regla 1 (input)
+
+    input  ir al estado 1
+
+
+estado 1
+
+    0 $accept: input . $end
+    2 input: input . line
+    3 line: . '\n'
+    4     | . expresion '\n'
+    5 expresion: . NUMERO_ENTERO
+    6          | . NUMERO_REAL
+    7          | . expresion '+' expresion
+    8          | . expresion '-' expresion
+    9          | . expresion '*' expresion
+
+    $end           desplazar e ir al estado 2
+    NUMERO_ENTERO  desplazar e ir al estado 3
+    NUMERO_REAL    desplazar e ir al estado 4
+    '\n'           desplazar e ir al estado 5
+
+    line       ir al estado 6
+    expresion  ir al estado 7
+
+
+estado 2
+
+    0 $accept: input $end .
+
+    $default  aceptar
+
+
+estado 3
+
+    5 expresion: NUMERO_ENTERO .
+
+    $default  reduce usando la regla 5 (expresion)
+
+
+estado 4
+
+    6 expresion: NUMERO_REAL .
+
+    $default  reduce usando la regla 6 (expresion)
+
+
+estado 5
+
+    3 line: '\n' .
+
+    $default  reduce usando la regla 3 (line)
+
+
+estado 6
+
+    2 input: input line .
+
+    $default  reduce usando la regla 2 (input)
+
+
+estado 7
+
+    4 line: expresion . '\n'
+    7 expresion: expresion . '+' expresion
+    8          | expresion . '-' expresion
+    9          | expresion . '*' expresion
+
+    '\n'  desplazar e ir al estado 8
+    '+'   desplazar e ir al estado 9
+    '-'   desplazar e ir al estado 10
+    '*'   desplazar e ir al estado 11
+
+
+estado 8
+
+    4 line: expresion '\n' .
+
+    $default  reduce usando la regla 4 (line)
+
+
+estado 9
+
+    5 expresion: . NUMERO_ENTERO
+    6          | . NUMERO_REAL
+    7          | . expresion '+' expresion
+    7          | expresion '+' . expresion
+    8          | . expresion '-' expresion
+    9          | . expresion '*' expresion
+
+    NUMERO_ENTERO  desplazar e ir al estado 3
+    NUMERO_REAL    desplazar e ir al estado 4
+
+    expresion  ir al estado 12
+
+
+estado 10
+
+    5 expresion: . NUMERO_ENTERO
+    6          | . NUMERO_REAL
+    7          | . expresion '+' expresion
+    8          | . expresion '-' expresion
+    8          | expresion '-' . expresion
+    9          | . expresion '*' expresion
+
+    NUMERO_ENTERO  desplazar e ir al estado 3
+    NUMERO_REAL    desplazar e ir al estado 4
+
+    expresion  ir al estado 13
+
+
+estado 11
+
+    5 expresion: . NUMERO_ENTERO
+    6          | . NUMERO_REAL
+    7          | . expresion '+' expresion
+    8          | . expresion '-' expresion
+    9          | . expresion '*' expresion
+    9          | expresion '*' . expresion
+
+    NUMERO_ENTERO  desplazar e ir al estado 3
+    NUMERO_REAL    desplazar e ir al estado 4
+
+    expresion  ir al estado 14
+
+
+estado 12
+
+    7 expresion: expresion . '+' expresion
+    7          | expresion '+' expresion .  ['\n', '+', '-', '*']
+    8          | expresion . '-' expresion
+    9          | expresion . '*' expresion
+
+    '+'  desplazar e ir al estado 9
+    '-'  desplazar e ir al estado 10
+    '*'  desplazar e ir al estado 11
+
+    '+'       [reduce usando la regla 7 (expresion)]
+    '-'       [reduce usando la regla 7 (expresion)]
+    '*'       [reduce usando la regla 7 (expresion)]
+    $default  reduce usando la regla 7 (expresion)
+
+
+estado 13
+
+    7 expresion: expresion . '+' expresion
+    8          | expresion . '-' expresion
+    8          | expresion '-' expresion .  ['\n', '+', '-', '*']
+    9          | expresion . '*' expresion
+
+    '+'  desplazar e ir al estado 9
+    '-'  desplazar e ir al estado 10
+    '*'  desplazar e ir al estado 11
+
+    '+'       [reduce usando la regla 8 (expresion)]
+    '-'       [reduce usando la regla 8 (expresion)]
+    '*'       [reduce usando la regla 8 (expresion)]
+    $default  reduce usando la regla 8 (expresion)
+
+
+estado 14
+
+    7 expresion: expresion . '+' expresion
+    8          | expresion . '-' expresion
+    9          | expresion . '*' expresion
+    9          | expresion '*' expresion .  ['\n', '+', '-', '*']
+
+    '+'  desplazar e ir al estado 9
+    '-'  desplazar e ir al estado 10
+    '*'  desplazar e ir al estado 11
+
+    '+'       [reduce usando la regla 9 (expresion)]
+    '-'       [reduce usando la regla 9 (expresion)]
+    '*'       [reduce usando la regla 9 (expresion)]
+    $default  reduce usando la regla 9 (expresion)

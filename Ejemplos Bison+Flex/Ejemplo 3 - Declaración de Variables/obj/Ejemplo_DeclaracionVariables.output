@@ -1,0 +1,282 @@
+Gramática
+
+    0 $accept: input $end
+
+    1 input: /* vacío */
+    2      | input line
+
+    3 line: '\n'
+    4     | sentenciaDeclaracion '\n'
+
+    5 $@1: /* vacío */
+
+    6 sentenciaDeclaracion: TIPO_DATO $@1 listaIdentificadores ';'
+    7                     | error caracterDeCorte
+
+    8 listaIdentificadores: identificadorA
+    9                     | identificadorA ',' listaIdentificadores
+
+   10 identificadorA: IDENTIFICADOR
+   11               | IDENTIFICADOR '=' expresion
+   12               | error
+
+   13 expresion: NUM
+   14          | error
+
+   15 caracterDeCorte: ';'
+   16                | '\n'
+
+
+Terminales con las reglas donde aparecen
+
+$end (0) 0
+'\n' (10) 3 4 16
+',' (44) 9
+';' (59) 6 15
+'=' (61) 11
+error (256) 7 12 14
+NUM (258) 13
+IDENTIFICADOR (259) 10 11
+TIPO_DATO (260) 6
+
+
+No terminales con las reglas donde aparecen
+
+$accept (10)
+    en la izquierda: 0
+input (11)
+    en la izquierda: 1 2, en la derecha: 0 2
+line (12)
+    en la izquierda: 3 4, en la derecha: 2
+sentenciaDeclaracion (13)
+    en la izquierda: 6 7, en la derecha: 4
+$@1 (14)
+    en la izquierda: 5, en la derecha: 6
+listaIdentificadores (15)
+    en la izquierda: 8 9, en la derecha: 6 9
+identificadorA (16)
+    en la izquierda: 10 11 12, en la derecha: 8 9
+expresion (17)
+    en la izquierda: 13 14, en la derecha: 11
+caracterDeCorte (18)
+    en la izquierda: 15 16, en la derecha: 7
+
+
+estado 0
+
+    0 $accept: . input $end
+    1 input: .
+    2      | . input line
+
+    $default  reduce usando la regla 1 (input)
+
+    input  ir al estado 1
+
+
+estado 1
+
+    0 $accept: input . $end
+    2 input: input . line
+    3 line: . '\n'
+    4     | . sentenciaDeclaracion '\n'
+    6 sentenciaDeclaracion: . TIPO_DATO $@1 listaIdentificadores ';'
+    7                     | . error caracterDeCorte
+
+    $end       desplazar e ir al estado 2
+    error      desplazar e ir al estado 3
+    TIPO_DATO  desplazar e ir al estado 4
+    '\n'       desplazar e ir al estado 5
+
+    line                  ir al estado 6
+    sentenciaDeclaracion  ir al estado 7
+
+
+estado 2
+
+    0 $accept: input $end .
+
+    $default  aceptar
+
+
+estado 3
+
+    7 sentenciaDeclaracion: error . caracterDeCorte
+   15 caracterDeCorte: . ';'
+   16                | . '\n'
+
+    '\n'  desplazar e ir al estado 8
+    ';'   desplazar e ir al estado 9
+
+    caracterDeCorte  ir al estado 10
+
+
+estado 4
+
+    5 $@1: .
+    6 sentenciaDeclaracion: TIPO_DATO . $@1 listaIdentificadores ';'
+
+    $default  reduce usando la regla 5 ($@1)
+
+    $@1  ir al estado 11
+
+
+estado 5
+
+    3 line: '\n' .
+
+    $default  reduce usando la regla 3 (line)
+
+
+estado 6
+
+    2 input: input line .
+
+    $default  reduce usando la regla 2 (input)
+
+
+estado 7
+
+    4 line: sentenciaDeclaracion . '\n'
+
+    '\n'  desplazar e ir al estado 12
+
+
+estado 8
+
+   16 caracterDeCorte: '\n' .
+
+    $default  reduce usando la regla 16 (caracterDeCorte)
+
+
+estado 9
+
+   15 caracterDeCorte: ';' .
+
+    $default  reduce usando la regla 15 (caracterDeCorte)
+
+
+estado 10
+
+    7 sentenciaDeclaracion: error caracterDeCorte .
+
+    $default  reduce usando la regla 7 (sentenciaDeclaracion)
+
+
+estado 11
+
+    6 sentenciaDeclaracion: TIPO_DATO $@1 . listaIdentificadores ';'
+    8 listaIdentificadores: . identificadorA
+    9                     | . identificadorA ',' listaIdentificadores
+   10 identificadorA: . IDENTIFICADOR
+   11               | . IDENTIFICADOR '=' expresion
+   12               | . error
+
+    error          desplazar e ir al estado 13
+    IDENTIFICADOR  desplazar e ir al estado 14
+
+    listaIdentificadores  ir al estado 15
+    identificadorA        ir al estado 16
+
+
+estado 12
+
+    4 line: sentenciaDeclaracion '\n' .
+
+    $default  reduce usando la regla 4 (line)
+
+
+estado 13
+
+   12 identificadorA: error .
+
+    $default  reduce usando la regla 12 (identificadorA)
+
+
+estado 14
+
+   10 identificadorA: IDENTIFICADOR .  [';', ',']
+   11               | IDENTIFICADOR . '=' expresion
+
+    '='  desplazar e ir al estado 17
+
+    $default  reduce usando la regla 10 (identificadorA)
+
+
+estado 15
+
+    6 sentenciaDeclaracion: TIPO_DATO $@1 listaIdentificadores . ';'
+
+    ';'  desplazar e ir al estado 18
+
+
+estado 16
+
+    8 listaIdentificadores: identificadorA .  [';']
+    9                     | identificadorA . ',' listaIdentificadores
+
+    ','  desplazar e ir al estado 19
+
+    $default  reduce usando la regla 8 (listaIdentificadores)
+
+
+estado 17
+
+   11 identificadorA: IDENTIFICADOR '=' . expresion
+   13 expresion: . NUM
+   14          | . error
+
+    error  desplazar e ir al estado 20
+    NUM    desplazar e ir al estado 21
+
+    expresion  ir al estado 22
+
+
+estado 18
+
+    6 sentenciaDeclaracion: TIPO_DATO $@1 listaIdentificadores ';' .
+
+    $default  reduce usando la regla 6 (sentenciaDeclaracion)
+
+
+estado 19
+
+    8 listaIdentificadores: . identificadorA
+    9                     | . identificadorA ',' listaIdentificadores
+    9                     | identificadorA ',' . listaIdentificadores
+   10 identificadorA: . IDENTIFICADOR
+   11               | . IDENTIFICADOR '=' expresion
+   12               | . error
+
+    error          desplazar e ir al estado 13
+    IDENTIFICADOR  desplazar e ir al estado 14
+
+    listaIdentificadores  ir al estado 23
+    identificadorA        ir al estado 16
+
+
+estado 20
+
+   14 expresion: error .
+
+    $default  reduce usando la regla 14 (expresion)
+
+
+estado 21
+
+   13 expresion: NUM .
+
+    $default  reduce usando la regla 13 (expresion)
+
+
+estado 22
+
+   11 identificadorA: IDENTIFICADOR '=' expresion .
+
+    $default  reduce usando la regla 11 (identificadorA)
+
+
+estado 23
+
+    9 listaIdentificadores: identificadorA ',' listaIdentificadores .
+
+    $default  reduce usando la regla 9 (listaIdentificadores)
