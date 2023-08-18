@@ -677,9 +677,16 @@ YY_RULE_SETUP
 { yylloc.last_column += yyleng; fprintf(stderr, "Flex: %d:%d: Error lexico: token no reconocido: %s", yylloc.first_line, yylloc.first_column, yytext); BEGIN(tokenNoReconocido); }
 	YY_BREAK
 
+case YY_STATE_EOF(tokenNoReconocido):
+#line 57 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
+{ 
+        fprintf(stderr, "\n");
+        BEGIN(INITIAL);
+    }
+	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 57 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
+#line 61 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
 {
         yyless(0);
         fprintf(stderr, "\n");
@@ -688,7 +695,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 62 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
+#line 66 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
 {
         yylloc.last_column += yyleng;
         fprintf(stderr, "%s\n", yytext);
@@ -698,27 +705,28 @@ YY_RULE_SETUP
 
 case 10:
 YY_RULE_SETUP
-#line 69 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
+#line 73 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
 { yylloc.first_column = yylloc.last_column += yyleng; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 71 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
+#line 75 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
 {
         yylloc.first_line = yylloc.last_line += yyleng;
         yylloc.first_column = yylloc.last_column = INICIO_CONTEO_COLUMNA;
         return '\n';
     }
 	YY_BREAK
+case YY_STATE_EOF(INITIAL):
+#line 81 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
+{ return 0; }
+	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 77 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
+#line 83 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
 ECHO;
 	YY_BREAK
-#line 719 "obj/Ejemplo_Calculadora_Notacion_Polaca_Inversa.lex.yy.c"
-case YY_STATE_EOF(INITIAL):
-case YY_STATE_EOF(tokenNoReconocido):
-	yyterminate();
+#line 730 "obj/Ejemplo_Calculadora_Notacion_Polaca_Inversa.lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1602,7 +1610,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 77 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
+#line 83 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
 
 /* Fin de la sección de reglas */ 
 

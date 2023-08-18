@@ -716,9 +716,16 @@ YY_RULE_SETUP
 { yylloc.last_column += yyleng; fprintf(stderr, "Flex: %d:%d: Error lexico: token no reconocido: %s", yylloc.first_line, yylloc.first_column, yytext); BEGIN(tokenNoReconocido); }
 	YY_BREAK
 
+case YY_STATE_EOF(tokenNoReconocido):
+#line 76 "src/Ejemplo_Calculadora_Notacion_Infija.l"
+{
+        fprintf(stderr, "\n");
+        BEGIN(INITIAL);
+    }
+	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 76 "src/Ejemplo_Calculadora_Notacion_Infija.l"
+#line 80 "src/Ejemplo_Calculadora_Notacion_Infija.l"
 {
         yyless(0);
         fprintf(stderr, "\n");
@@ -727,7 +734,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 81 "src/Ejemplo_Calculadora_Notacion_Infija.l"
+#line 85 "src/Ejemplo_Calculadora_Notacion_Infija.l"
 {
         yylloc.last_column += yyleng;
         fprintf(stderr, "%s\n", yytext);
@@ -737,27 +744,28 @@ YY_RULE_SETUP
 
 case 14:
 YY_RULE_SETUP
-#line 88 "src/Ejemplo_Calculadora_Notacion_Infija.l"
+#line 92 "src/Ejemplo_Calculadora_Notacion_Infija.l"
 { yylloc.first_column = yylloc.last_column += yyleng; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 90 "src/Ejemplo_Calculadora_Notacion_Infija.l"
+#line 94 "src/Ejemplo_Calculadora_Notacion_Infija.l"
 {
         yylloc.first_line = yylloc.last_line += yyleng;
         yylloc.first_column = yylloc.last_column = INICIO_CONTEO_COLUMNA;
         return '\n';
     }
 	YY_BREAK
+case YY_STATE_EOF(INITIAL):
+#line 100 "src/Ejemplo_Calculadora_Notacion_Infija.l"
+{ return 0; }
+	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 96 "src/Ejemplo_Calculadora_Notacion_Infija.l"
+#line 102 "src/Ejemplo_Calculadora_Notacion_Infija.l"
 ECHO;
 	YY_BREAK
-#line 758 "obj/Ejemplo_Calculadora_Notacion_Infija.lex.yy.c"
-case YY_STATE_EOF(INITIAL):
-case YY_STATE_EOF(tokenNoReconocido):
-	yyterminate();
+#line 769 "obj/Ejemplo_Calculadora_Notacion_Infija.lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1641,7 +1649,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 96 "src/Ejemplo_Calculadora_Notacion_Infija.l"
+#line 102 "src/Ejemplo_Calculadora_Notacion_Infija.l"
 
 /* Fin de la sección de reglas */ 
 

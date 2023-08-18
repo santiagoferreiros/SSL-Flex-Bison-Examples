@@ -82,7 +82,7 @@ int main(void)
                 printf("Ingrese una expresion aritmetica en notacion polaca inversa para resolver:\n");
                 printf("(La funcion yyparse ha retornado con valor: %d)\n\n", yyparse());
                 /* Valor | Significado */
-                /*   0   | Análisis sintáctico exitoso (debido a un fin de entrada (EOF) pudiendo ser denotado por el analizador léxico (yylex) con el token YYEOF, ó bien a una invocación de la macro YYACCEPT) */
+                /*   0   | Análisis sintáctico exitoso (debido a un fin de entrada (EOF) denotado por el analizador léxico (yylex), ó bien a una invocación de la macro YYACCEPT) */
                 /*   1   | Fallo en el análisis sintáctico (debido a un error en el análisis sintáctico del que no se pudo recuperar, ó bien a una invocación de la macro YYABORT) */
                 /*   2   | Fallo en el análisis sintáctico (debido a un agotamiento de memoria) */
         }

@@ -73,6 +73,10 @@ digitoHexa [0-9a-fA-F]
 
 [^ \t\n] { yylloc.last_column += yyleng; fprintf(stderr, "Flex: %d:%d: Error lexico: token no reconocido: %s", yylloc.first_line, yylloc.first_column, yytext); BEGIN(tokenNoReconocido); }
 <tokenNoReconocido>{
+    <<EOF>> {
+        fprintf(stderr, "\n");
+        BEGIN(INITIAL);
+    }
     " "|\t|\n {
         yyless(0);
         fprintf(stderr, "\n");
@@ -92,6 +96,8 @@ digitoHexa [0-9a-fA-F]
         yylloc.first_column = yylloc.last_column = INICIO_CONTEO_COLUMNA;
         return '\n';
     }
+
+<<EOF>> { return 0; }
 
 %%
 /* Fin de la sección de reglas */ 
