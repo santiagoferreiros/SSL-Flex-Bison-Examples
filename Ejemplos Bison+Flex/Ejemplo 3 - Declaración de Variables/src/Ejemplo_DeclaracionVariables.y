@@ -1,127 +1,75 @@
 /* Ejemplo para detección de declaración de variables */
 
-/* Inicio de la seccion de prólogo (declaraciones y definiciones de C y directivas del preprocesador) */
 %{
 #include <stdio.h>
+#include <ctype.h>
 #include <string.h>
 
-#include "general.h"
-
-	/* Declaración de la funcion yylex del analizador léxico, necesaria para que la funcion yyparse del analizador sintáctico pueda invocarla cada vez que solicite un nuevo token */
-extern int yylex(void);
-	/* Declaracion de la función yyerror para reportar errores, necesaria para que la función yyparse del analizador sintáctico pueda invocarla para reportar un error */
-void yyerror(const char*);
-
-int flag_error = 0;
-int contador = 0;
+int flag_error=0;
+int contador=0;
 char* tipo;
 
+int yylex();
+int yywrap(){
+	return(1);
+}
+
+void yyerror (char const *s) {
+   fprintf (stderr, "%s\n", s);
+}
+
 %}
-/* Fin de la sección de prólogo (declaraciones y definiciones de C y directivas del preprocesador) */
 
-/* Inicio de la sección de declaraciones de Bison */
-
-	/* Para requerir una versión mínima de Bison para procesar la gramática */
-/* %require "2.4.1" */
-
-	/* Para requirle a Bison que describa más detalladamente los mensajes de error al invocar a yyerror */
-%error-verbose
-	/* Nota: esta directiva (escrita de esta manera) quedó obsoleta a partir de Bison v3.0, siendo reemplazada por la directiva: %define parse.error verbose */
-
-	/* Para activar el seguimiento de las ubicaciones de los tokens (número de linea, número de columna) */
-%locations
-
-	/* Para especificar la colección completa de posibles tipos de datos para los valores semánticos */
 %union {
-	char char_array_type[30];
-	int int_type;
-	float real;
+char cadena[30];
+int entero;
+int tipo;
+float real;
 }
 
-	/* */
-%token <int_type> NUM
-%token <char_array_type> IDENTIFICADOR
-%token CHAR_TOKEN "char" INT_TOKEN "int" FLOAT_TOKEN "float" DOUBLE_TOKEN "double"
-/*%token <int_type> error*/
+%token <entero> NUM
+%token <cadena> IDENTIFICADOR
+%token <cadena> TIPO_DATO
+%token <entero> error
 
-	/* */
-%type <char_array_type> factorizacion_identificadorA
-%type <int_type> expresion
+%type <cadena> identificadorA
+%type <entero> expresion
 
-	/* Para especificar el no-terminal de inicio de la gramática (el axioma). Si esto se omitiera, se asumiría que es el no-terminal de la primera regla */
-%start input
+%% /* A continuacion las reglas gramaticales y las acciones */
 
-/* Fin de la sección de declaraciones de Bison */
+input:    /* vacio */
+        | input line
+;
 
-/* Inicio de la sección de reglas gramaticales */
-%%
+line:     '\n'
+        | sentenciaDeclaracion '\n'
+;
 
-input
-	:    /* intencionalmente se deja el resto de esta línea vacía: es la producción nula */
-	| input line
-	;
+sentenciaDeclaracion: 	TIPO_DATO {tipo=$<cadena>1;} listaIdentificadores ';' {if(flag_error==0){printf("Se han declarado %d variables de tipo %s \n",contador,$<cadena>1);contador=0;};flag_error=0;}
+						| error caracterDeCorte {printf("Falta tipo de dato \n");}
 
-line
-	: '\n'
-    | sentenciaDeclaracion '\n'
-	;
+listaIdentificadores: 	identificadorA
+						| identificadorA ',' listaIdentificadores
+;
 
-sentenciaDeclaracion
-	: especificador_de_tipo lista_identificadores ';' { if(flag_error==0){printf("Se han declarado %d variables de tipo %s \n",contador,$<char_array_type>1);contador=0;};flag_error=0;}
-	| error caracterDeCorte {printf("Falta tipo de dato\n");}
-	;
+identificadorA:		  	IDENTIFICADOR {printf("Se declara el identificador %s de tipo %s \n",$<cadena>1,tipo);contador++;}
+						| IDENTIFICADOR '=' expresion {if(flag_error==0){printf("Se declara el identificador %s de tipo %s y se le asigna el valor %d \n",$<cadena>1,tipo,$<entero>3);};contador++;}
+						| error {if(flag_error==0){printf("Falta identificador \n");flag_error=1;};}
+;
 
-lista_identificadores
-	: factorizacion_identificadorA
-	| factorizacion_identificadorA ',' lista_identificadores
-	;
+expresion:				NUM {$<entero>$=$<entero>1;}
+						| error {flag_error=1;printf("Valor no reconocido para asignar \n");}
+;
 
-factorizacion_identificadorA
-	: IDENTIFICADOR {printf("Se declara el identificador %s de tipo %s \n",$<char_array_type>1,tipo);contador++;}
-	| IDENTIFICADOR '=' expresion {if(flag_error==0){printf("Se declara el identificador %s de tipo %s y se le asigna el valor %d \n",$<char_array_type>1,tipo,$<int_type>3);};contador++;}
-	| error {if(flag_error==0){printf("Falta identificador \n");flag_error=1;};}
-	;
-
-especificador_de_tipo
-	: "char"
-	| "int"
-	| "float"
-	| "double"
-	;
-
-expresion
-	: NUM {$<int_type>$=$<int_type>1;}
-	| error {flag_error=1;printf("Valor no reconocido para asignar\n");}
-	;
-
-caracterDeCorte
-	: ';'
-	| '\n'
-	;
+caracterDeCorte:	';' | '\n'
 
 %%
-/* Fin de la sección de reglas gramaticales */
 
-/* Inicio de la sección de epílogo (código de usuario) */
-
-int main(void)
+int main ()
 {
-	inicializarUbicacion();
-
-	#if YYDEBUG
-    	yydebug = 1;
-	#endif
+    #if YYDEBUG
+      yydebug = 1;
+    #endif
  
-	yyparse();
-
-	pausa();
-	return 0;
+	yyparse ();
 }
-
-        /* Definición de la funcion yyerror para reportar errores, necesaria para que la funcion yyparse del analizador sintáctico pueda invocarla para reportar un error */
-void yyerror(const char* literalCadena)
-{
-        fprintf(stderr, "Bison: %d:%d: %s\n", yylloc.first_line, yylloc.first_column, literalCadena);
-}
-
-/* Fin de la sección de epílogo (código de usuario) */
