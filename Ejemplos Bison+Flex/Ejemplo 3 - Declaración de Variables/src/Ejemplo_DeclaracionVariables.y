@@ -19,7 +19,7 @@ char* tipo;
 %}
 /* Fin de la sección de prólogo (declaraciones y definiciones de C y directivas del preprocesador) */
 
-/* Inicio de la sección de declaraciones de bison */
+/* Inicio de la sección de declaraciones de Bison */
 
 	/* Para requerir una versión mínima de Bison para procesar la gramática */
 /* %require "2.4.1" */
@@ -51,7 +51,7 @@ char* tipo;
 	/* Para especificar el no-terminal de inicio de la gramática (el axioma). Si esto se omitiera, se asumiría que es el no-terminal de la primera regla */
 %start input
 
-/* Fin de la sección de declaraciones de bison */
+/* Fin de la sección de declaraciones de Bison */
 
 /* Inicio de la sección de reglas gramaticales */
 %%
@@ -84,29 +84,9 @@ factorizacion_identificadorA
 
 especificador_de_tipo
 	: "char"
-			{
-				debug_reducciones_bison_printf("Bison: %d:%d-%d:%d: Reduciendo por la regla: type_specifier -> \"char\" \n", @1.first_line, @1.first_column, @1.last_line, @1.last_column);
-				bandera_podria_usarse_un_nombre_de_typedef = FALSE;
-				$$ = crear_nodo_ast_enumeracion_type_specifier(TIPO_CHAR, @1, NULL, NULL);
-			}
 	| "int"
-			{
-				debug_reducciones_bison_printf("Bison: %d:%d-%d:%d: Reduciendo por la regla: type_specifier -> \"int\" \n", @1.first_line, @1.first_column, @1.last_line, @1.last_column);
-				bandera_podria_usarse_un_nombre_de_typedef = FALSE;
-				$$ = crear_nodo_ast_enumeracion_type_specifier(TIPO_INT, @1, NULL, NULL);
-			}
 	| "float"
-			{
-				debug_reducciones_bison_printf("Bison: %d:%d-%d:%d: Reduciendo por la regla: type_specifier -> \"float\" \n", @1.first_line, @1.first_column, @1.last_line, @1.last_column);
-				bandera_podria_usarse_un_nombre_de_typedef = FALSE;
-				$$ = crear_nodo_ast_enumeracion_type_specifier(TIPO_FLOAT, @1, NULL, NULL);
-			}
 	| "double"
-			{
-				debug_reducciones_bison_printf("Bison: %d:%d-%d:%d: Reduciendo por la regla: type_specifier -> \"double\" \n", @1.first_line, @1.first_column, @1.last_line, @1.last_column);
-				bandera_podria_usarse_un_nombre_de_typedef = FALSE;
-				$$ = crear_nodo_ast_enumeracion_type_specifier(TIPO_DOUBLE, @1, NULL, NULL);
-			}
 	;
 
 expresion

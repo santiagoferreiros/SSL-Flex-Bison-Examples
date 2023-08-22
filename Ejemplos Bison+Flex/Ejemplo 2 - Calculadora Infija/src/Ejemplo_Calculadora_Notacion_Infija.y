@@ -16,7 +16,7 @@ void menu(void);
 %}
 /* Fin de la sección de prólogo (declaraciones y definiciones de C y directivas del preprocesador) */
 
-/* Inicio de la sección de declaraciones de bison */
+/* Inicio de la sección de declaraciones de Bison */
 
 	/* Para requerir una versión mínima de Bison para procesar la gramática */
 /* %require "2.4.1" */
@@ -50,7 +50,7 @@ void menu(void);
 	/* Para especificar el no-terminal de inicio de la gramática (el axioma). Si esto se omitiera, se asumiría que es el no-terminal de la primera regla */
 %start input
 
-/* Fin de la sección de declaraciones de bison */
+/* Fin de la sección de declaraciones de Bison */
 
 /* Inicio de la sección de reglas gramaticales */
 %%

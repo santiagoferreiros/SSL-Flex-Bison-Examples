@@ -41,7 +41,10 @@
    enum yytokentype {
      NUM = 258,
      IDENTIFICADOR = 259,
-     TIPO_DATO = 260
+     CHAR_TOKEN = 260,
+     INT_TOKEN = 261,
+     FLOAT_TOKEN = 262,
+     DOUBLE_TOKEN = 263
    };
 #endif
 
@@ -52,17 +55,16 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 28 "src/Ejemplo_DeclaracionVariables.y"
+#line 35 "src/Ejemplo_DeclaracionVariables.y"
 
-	char cadena[30];
-	int entero;
-	int tipo;
+	char char_array_type[30];
+	int int_type;
 	float real;
 
 
 
 /* Line 1676 of yacc.c  */
-#line 66 "obj/Ejemplo_DeclaracionVariables.tab.h"
+#line 68 "obj/Ejemplo_DeclaracionVariables.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

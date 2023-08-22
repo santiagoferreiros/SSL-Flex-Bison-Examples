@@ -288,10 +288,10 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 
 #define YY_NUM_RULES 5
 #define YY_END_OF_BUFFER 6
-static yyconst short int yy_accept[16] =
+static yyconst short int yy_accept[14] =
     {   0,
-        0,    0,    6,    5,    2,    1,    4,    4,    2,    0,
-        1,    4,    4,    3,    0
+        0,    0,    6,    5,    2,    1,    4,    2,    0,    1,
+        4,    3,    0
     } ;
 
 static yyconst int yy_ec[256] =
@@ -305,7 +305,7 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    5,    5,    5,    5,    5,    5,
         6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
         6,    6,    6,    6,    6,    6,    6,    7,    6,    6,
-        6,    6,    6,    6,    8,    6,    5,    5,    5,    5,
+        1,    1,    1,    1,    6,    1,    5,    5,    5,    5,
 
         5,    5,    6,    6,    6,    6,    6,    6,    6,    6,
         6,    6,    6,    6,    6,    6,    6,    6,    6,    7,
@@ -326,37 +326,35 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static yyconst int yy_meta[9] =
+static yyconst int yy_meta[8] =
     {   0,
-        1,    2,    2,    3,    4,    5,    6,    5
+        1,    2,    2,    3,    4,    5,    6
     } ;
 
-static yyconst short int yy_base[20] =
+static yyconst short int yy_base[18] =
     {   0,
-        0,    0,   27,   28,   19,    0,   17,   16,    5,    0,
-        0,    3,    2,    0,   28,    7,   12,   14,   19
+        0,    0,   11,   23,    3,    0,    0,    2,    0,    0,
+        0,    0,   23,    6,   11,   13,   18
     } ;
 
-static yyconst short int yy_def[20] =
+static yyconst short int yy_def[18] =
     {   0,
-       15,    1,   15,   15,   16,   17,   18,   18,   16,   19,
-       17,   18,   18,   19,    0,   15,   15,   15,   15
+       13,    1,   13,   13,   14,   15,   16,   14,   17,   15,
+       16,   17,    0,   13,   13,   13,   13
     } ;
 
-static yyconst short int yy_nxt[37] =
+static yyconst short int yy_nxt[31] =
     {   0,
-        4,    5,    6,    6,    7,    7,    7,    8,    9,   13,
-       13,   15,    9,   11,   11,   12,   12,   12,   12,   12,
-       14,   14,   14,   13,   13,   10,   15,    3,   15,   15,
-       15,   15,   15,   15,   15,   15
+        4,    5,    6,    6,    7,    7,    7,    8,   13,    9,
+       13,    8,   10,   10,   11,   11,   11,   11,   11,   12,
+       12,   12,    3,   13,   13,   13,   13,   13,   13,   13
     } ;
 
-static yyconst short int yy_chk[37] =
+static yyconst short int yy_chk[31] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1,   16,   13,
-       12,    9,   16,   17,   17,   18,   18,   18,   18,   18,
-       19,   19,   19,    8,    7,    5,    3,   15,   15,   15,
-       15,   15,   15,   15,   15,   15
+        1,    1,    1,    1,    1,    1,    1,   14,    8,    5,
+        3,   14,   15,   15,   16,   16,   16,   16,   16,   17,
+       17,   17,   13,   13,   13,   13,   13,   13,   13,   13
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -372,16 +370,31 @@ static char *yy_last_accepting_cpos;
 char *yytext;
 #line 1 "src/Uso_Variables_Globales_Funciones_Usuario.l"
 #define INITIAL 0
-#line 4 "src/Uso_Variables_Globales_Funciones_Usuario.l"
-
-// Definimos las librerías que incluímos, entre ellas "misfunciones.h"
+/* Inicio de la sección de definiciones. Aquí: */
+/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+/* De esas formas podemos poner declaraciones y definiciones de C y directivas del preprocesador */
+/* 2. Los comentarios (sólo hay de múltiples líneas) sin sangría también se copian tal cual al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+#line 8 "src/Uso_Variables_Globales_Funciones_Usuario.l"
 
 #include <stdio.h>
+
 #include "misfunciones.h"
 
-// Podemos definir variables globales para nuestro analizador léxico
-int acum = 0;
-#line 385 "obj/Uso_Variables_Globales_Funciones_Usuario.lex.yy.c"
+int acumulador = 0;
+
+/* La siguiente línea define explícitamente a yytext como un puntero a un caracter ( char* yytext; ). Ésta es la opción por defecto si no se pone nada. */
+/* Con la siguiente opción la función de análisis int yylex(void); se comporta como si en la sección de usuario existiera la función int yywrap(void) return 1; la cual devuelve verdadero (no-cero), haciendo que una vez que la función de análisis int yylex(void) reciba una indicación de EOF desde YY_INPUT, asuma que no hay nada más para analizar de yyin y finalice (haciendo un return 0;) */
+/* Condiciones de arranque inclusivas */
+/* %s */
+/* Condiciones de arranque exclusivas */
+/* %x */
+/* Declaraciones con cada nombre y su definición; se utilizan para simplificar las reglas */
+/* Fin de la sección de definiciones */
+/* Inicio de la sección de reglas. Aquí: */
+/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+/* Esto podría utilizarse para declarar variables que son locales a la rutina de análisis léxico y (después de las declaraciones) al código que debe ejecutarse siempre que se entra a la rutina de análisis léxico */
+/* 2. NO pueden hacerse comentarios sin sangría, ya que estos no se copian literalmente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+#line 398 "obj/Uso_Variables_Globales_Funciones_Usuario.lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -532,10 +545,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 17 "src/Uso_Variables_Globales_Funciones_Usuario.l"
+#line 40 "src/Uso_Variables_Globales_Funciones_Usuario.l"
 
 
-#line 539 "obj/Uso_Variables_Globales_Funciones_Usuario.lex.yy.c"
+#line 552 "obj/Uso_Variables_Globales_Funciones_Usuario.lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -586,13 +599,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 16 )
+				if ( yy_current_state >= 14 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 28 );
+		while ( yy_base[yy_current_state] != 23 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -620,30 +633,38 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 19 "src/Uso_Variables_Globales_Funciones_Usuario.l"
-{acum=acum+yyleng;printf("El doble de la longitud de la cadena %s es %d \n",yytext,duplicar(yyleng));}
+#line 42 "src/Uso_Variables_Globales_Funciones_Usuario.l"
+{ 
+        acumulador = acumulador + yyleng;
+        printf("El doble de la longitud de la cadena %s es %d\n", yytext, duplicar(yyleng));
+    }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 20 "src/Uso_Variables_Globales_Funciones_Usuario.l"
-{acum=acum+yyleng;}
+#line 46 "src/Uso_Variables_Globales_Funciones_Usuario.l"
+{acumulador = acumulador + yyleng; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 21 "src/Uso_Variables_Globales_Funciones_Usuario.l"
-{acum=acum+yyleng;}
+#line 47 "src/Uso_Variables_Globales_Funciones_Usuario.l"
+{ acumulador = acumulador + yyleng; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 22 "src/Uso_Variables_Globales_Funciones_Usuario.l"
-{acum=acum+yyleng;}
+#line 48 "src/Uso_Variables_Globales_Funciones_Usuario.l"
+{ acumulador = acumulador + yyleng; }
 	YY_BREAK
+/* Reglas por defecto de Flex: */
+/* <*>.|\n { ECHO; } */
+/* (ECHO; escribe yytext en la salida del escáner: FILE* yyout (variable global a la cual por defecto se le asigna stdout)) */
+/* <<EOF>> { yyterminate(); } */
+/* (yyterminate(); hace que la función yylex finalice retornando un 0, indicando un fin-de-entrada (EOF)) */
 case 5:
 YY_RULE_SETUP
-#line 24 "src/Uso_Variables_Globales_Funciones_Usuario.l"
+#line 56 "src/Uso_Variables_Globales_Funciones_Usuario.l"
 ECHO;
 	YY_BREAK
-#line 647 "obj/Uso_Variables_Globales_Funciones_Usuario.lex.yy.c"
+#line 668 "obj/Uso_Variables_Globales_Funciones_Usuario.lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -935,7 +956,7 @@ static yy_state_type yy_get_previous_state()
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 16 )
+			if ( yy_current_state >= 14 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
@@ -970,11 +991,11 @@ yy_state_type yy_current_state;
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 16 )
+		if ( yy_current_state >= 14 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
-	yy_is_jam = (yy_current_state == 15);
+	yy_is_jam = (yy_current_state == 13);
 
 	return yy_is_jam ? 0 : yy_current_state;
 	}
@@ -1529,24 +1550,23 @@ int main()
 	return 0;
 	}
 #endif
-#line 24 "src/Uso_Variables_Globales_Funciones_Usuario.l"
+#line 56 "src/Uso_Variables_Globales_Funciones_Usuario.l"
 
+/* Fin de la sección de reglas */ 
 
-int main() {
-   
-    /* Acciones previas a la invocación del analizador léxico */
-    //extern FILE *yyin, *yyout;
+/* Inicio de la sección de código de usuario, la cual: */
+	/* 1. Se utiliza para rutinas de complemento que llaman al analizador léxico o son llamadas por este; la presencia de esta sección es opcional */
+    /* 2. Toda esta sección simplemente se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+
+int main(void)
+{
+
     yyin = fopen("entrada.txt", "r");
     yyout = fopen("salida.txt", "w");
 
-    /* Invocación del analizador léxico */
-
     yylex();
-	
-    /* Acciónes posteriores a la ejecución del analizador léxico, 
-    sirven por ejemplo, para hacer un informe de resumen. */
 
-    printf("La suma de las longitudes de todas las cadenas reconocidas es %d\n",acum);
+    fprintf(yyout, "La suma de las longitudes de todas las cadenas reconocidas es %d\n", acumulador);
 
     fclose(yyin);
     fclose(yyout);
@@ -1557,3 +1577,4 @@ int main() {
     return 0;
 }
 
+/* Fin de la sección de código de usuario */

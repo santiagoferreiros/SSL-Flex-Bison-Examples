@@ -1,43 +1,74 @@
-%option noyywrap
+
+/* Inicio de la sección de definiciones. Aquí: */
+    /* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+        /* De esas formas podemos poner declaraciones y definiciones de C y directivas del preprocesador */
+    /* 2. Los comentarios (sólo hay de múltiples líneas) sin sangría también se copian tal cual al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
 
 %{
 
-// Definimos las librerías que incluímos, entre ellas "misfunciones.h"
-
 #include <stdio.h>
+
 #include "misfunciones.h"
 
-// Podemos definir variables globales para nuestro analizador léxico
-int acum = 0;
+int acumulador = 0;
+
 %}
 
-LETRA [a-zA-z]
-DIGITO_HEXADECIMAL [0-9A-Fa-f]
+    /* La siguiente línea define explícitamente a yytext como un puntero a un caracter ( char* yytext; ). Ésta es la opción por defecto si no se pone nada. */
+%pointer
+    /* Con la siguiente opción la función de análisis int yylex(void); se comporta como si en la sección de usuario existiera la función int yywrap(void) return 1; la cual devuelve verdadero (no-cero), haciendo que una vez que la función de análisis int yylex(void) reciba una indicación de EOF desde YY_INPUT, asuma que no hay nada más para analizar de yyin y finalice (haciendo un return 0;) */
+%option noyywrap
 
+    /* Condiciones de arranque inclusivas */
+/* %s */
+    /* Condiciones de arranque exclusivas */
+/* %x */
+
+    /* Declaraciones con cada nombre y su definición; se utilizan para simplificar las reglas */
+digito [0-9]
+digitoNoCero [1-9]
+digitoOctal [0-7]
+digitoHexa [0-9a-fA-F]
+noDigito [_a-zA-Z]
+
+/* Fin de la sección de definiciones */
+
+/* Inicio de la sección de reglas. Aquí: */
+    /* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+        /* Esto podría utilizarse para declarar variables que son locales a la rutina de análisis léxico y (después de las declaraciones) al código que debe ejecutarse siempre que se entra a la rutina de análisis léxico */
+    /* 2. NO pueden hacerse comentarios sin sangría, ya que estos no se copian literalmente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
 %%
 
-[1-9][0-9]* {acum=acum+yyleng;printf("El doble de la longitud de la cadena %s es %d \n",yytext,duplicar(yyleng));}
-0[0-7]* {acum=acum+yyleng;}
-0[xX]{DIGITO_HEXADECIMAL}+ {acum=acum+yyleng;}
-({LETRA}|"_")({LETRA}|[0-9]|"_")* {acum=acum+yyleng;}
+{digitoNoCero}{digito}* { 
+        acumulador = acumulador + yyleng;
+        printf("El doble de la longitud de la cadena %s es %d\n", yytext, duplicar(yyleng));
+    }
+0{digitoOctal}* {acumulador = acumulador + yyleng; }
+0[xX]{digitoHexa}+ { acumulador = acumulador + yyleng; }
+{noDigito}({noDigito}|{digito})* { acumulador = acumulador + yyleng; }
+
+    /* Reglas por defecto de Flex: */
+        /* <*>.|\n { ECHO; } */
+            /* (ECHO; escribe yytext en la salida del escáner: FILE* yyout (variable global a la cual por defecto se le asigna stdout)) */
+        /* <<EOF>> { yyterminate(); } */
+            /* (yyterminate(); hace que la función yylex finalice retornando un 0, indicando un fin-de-entrada (EOF)) */
 
 %%
+/* Fin de la sección de reglas */ 
 
-int main() {
-   
-    /* Acciones previas a la invocación del analizador léxico */
-    //extern FILE *yyin, *yyout;
+/* Inicio de la sección de código de usuario, la cual: */
+	/* 1. Se utiliza para rutinas de complemento que llaman al analizador léxico o son llamadas por este; la presencia de esta sección es opcional */
+    /* 2. Toda esta sección simplemente se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+
+int main(void)
+{
+
     yyin = fopen("entrada.txt", "r");
     yyout = fopen("salida.txt", "w");
 
-    /* Invocación del analizador léxico */
-
     yylex();
-	
-    /* Acciónes posteriores a la ejecución del analizador léxico, 
-    sirven por ejemplo, para hacer un informe de resumen. */
 
-    printf("La suma de las longitudes de todas las cadenas reconocidas es %d\n",acum);
+    fprintf(yyout, "La suma de las longitudes de todas las cadenas reconocidas es %d\n", acumulador);
 
     fclose(yyin);
     fclose(yyout);
@@ -48,3 +79,4 @@ int main() {
     return 0;
 }
 
+/* Fin de la sección de código de usuario */

@@ -262,6 +262,9 @@ static void yy_flex_free YY_PROTO(( void * ));
 
 #define YY_AT_BOL() (yy_current_buffer->yy_at_bol)
 
+
+#define yywrap() 1
+#define YY_SKIP_YYWRAP
 typedef unsigned char YY_CHAR;
 FILE *yyin = (FILE *) 0, *yyout = (FILE *) 0;
 typedef int yy_state_type;
@@ -283,12 +286,12 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 	*yy_cp = '\0'; \
 	yy_c_buf_p = yy_cp;
 
-#define YY_NUM_RULES 10
-#define YY_END_OF_BUFFER 11
-static yyconst short int yy_accept[17] =
+#define YY_NUM_RULES 11
+#define YY_END_OF_BUFFER 12
+static yyconst short int yy_accept[21] =
     {   0,
-        0,    0,   11,    9,    8,    7,    3,    1,    2,    4,
-        6,    5,    9,    8,    6,    0
+        0,    0,    0,    0,   12,    8,    6,    7,    3,    1,
+        2,    4,    5,   10,    9,    6,    7,    5,   10,    0
     } ;
 
 static yyconst int yy_ec[256] =
@@ -296,9 +299,9 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    2,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    4,    5,    1,    6,    1,    7,    8,    8,    8,
-        8,    8,    8,    8,    8,    8,    8,    1,    1,    1,
+        1,    4,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    5,    6,    1,    7,    1,    8,    9,    9,    9,
+        9,    9,    9,    9,    9,    9,    9,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -306,7 +309,7 @@ static yyconst int yy_ec[256] =
 
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    9,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -325,33 +328,37 @@ static yyconst int yy_ec[256] =
 
 static yyconst int yy_meta[10] =
     {   0,
-        1,    1,    2,    1,    1,    1,    1,    1,    1
+        1,    2,    3,    2,    1,    1,    1,    1,    1
     } ;
 
-static yyconst short int yy_base[18] =
+static yyconst short int yy_base[24] =
     {   0,
-        0,    0,   15,    0,   12,   16,    0,    0,    0,    0,
-        5,    0,    0,   10,    3,   16,    9
+        0,    0,    8,   11,   25,   26,    0,   21,   26,   26,
+       26,   26,   14,    0,   26,    0,   19,   12,    0,   26,
+       15,   18,   18
     } ;
 
-static yyconst short int yy_def[18] =
+static yyconst short int yy_def[24] =
     {   0,
-       16,    1,   16,   17,   17,   16,   17,   17,   17,   17,
-       17,   17,   17,   17,   17,    0,   16
+       20,    1,   21,   21,   20,   20,   22,   20,   20,   20,
+       20,   20,   20,   23,   20,   22,   20,   20,   23,    0,
+       20,   20,   20
     } ;
 
-static yyconst short int yy_nxt[26] =
+static yyconst short int yy_nxt[36] =
     {   0,
-        4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
-       15,   14,   15,   14,   16,    3,   16,   16,   16,   16,
-       16,   16,   16,   16,   16
+        6,    7,    8,    7,    9,   10,   11,   12,   13,   15,
+       15,   15,   15,   15,   15,   14,   14,   14,   19,   16,
+       18,   17,   18,   17,   20,    5,   20,   20,   20,   20,
+       20,   20,   20,   20,   20
     } ;
 
-static yyconst short int yy_chk[26] =
+static yyconst short int yy_chk[36] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,   17,
-       15,   14,   11,    5,    3,   16,   16,   16,   16,   16,
-       16,   16,   16,   16,   16
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    3,
+        3,    3,    4,    4,    4,   21,   21,   21,   23,   22,
+       18,   17,   13,    8,    5,   20,   20,   20,   20,   20,
+       20,   20,   20,   20,   20
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -368,26 +375,43 @@ char *yytext;
 #line 1 "src/Reconocedor_Tokens.l"
 #define INITIAL 0
 /* Reconocedor de Tokens */
-#line 4 "src/Reconocedor_Tokens.l"
+/* Inicio de la sección de definiciones. Aquí: */
+/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+/* De esas formas podemos poner declaraciones y definiciones de C y directivas del preprocesador */
+/* 2. Los comentarios (sólo hay de múltiples líneas) sin sangría también se copian tal cual al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+#line 9 "src/Reconocedor_Tokens.l"
 
 #include <stdio.h>
 #include <stdlib.h>
 
-enum yytokentype {
+#define archivo_yyin "entrada.txt"
 
-NUMBER = 258,
-ADD = 259,
-SUB = 260,
-MUL = 261,
-DIV = 262,
-ABS = 263,
-EOL = 264
-
+enum yytokentype
+{
+	NUMBER = 258
 };
 
 int yylval;
 
-#line 391 "obj/Reconocedor_Tokens.lex.yy.c"
+#define INICIO_CONTEO_LINEA 1
+#define INICIO_CONTEO_COLUMNA 1
+
+int linea_actual = INICIO_CONTEO_LINEA, columna_actual = INICIO_CONTEO_COLUMNA;
+
+/* La siguiente línea define explícitamente a yytext como un puntero a un caracter ( char* yytext; ). Ésta es la opción por defecto si no se pone nada. */
+/* Con la siguiente opción la función de análisis int yylex(void); se comporta como si en la sección de usuario existiera la función int yywrap(void) return 1; la cual devuelve verdadero (no-cero), haciendo que una vez que la función de análisis int yylex(void) reciba una indicación de EOF desde YY_INPUT, asuma que no hay nada más para analizar de yyin y finalice (haciendo un return 0;) */
+/* Condiciones de arranque inclusivas */
+/* %s */
+/* Condiciones de arranque exclusivas */
+#define tokenNoReconocido 1
+
+/* Declaraciones con cada nombre y su definición; se utilizan para simplificar las reglas */
+/* Fin de la sección de definiciones */
+/* Inicio de la sección de reglas. Aquí: */
+/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+/* Esto podría utilizarse para declarar variables que son locales a la rutina de análisis léxico y (después de las declaraciones) al código que debe ejecutarse siempre que se entra a la rutina de análisis léxico */
+/* 2. NO pueden hacerse comentarios sin sangría, ya que estos no se copian literalmente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+#line 415 "obj/Reconocedor_Tokens.lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -538,10 +562,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 24 "src/Reconocedor_Tokens.l"
+#line 48 "src/Reconocedor_Tokens.l"
 
 
-#line 545 "obj/Reconocedor_Tokens.lex.yy.c"
+#line 569 "obj/Reconocedor_Tokens.lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -592,13 +616,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 17 )
+				if ( yy_current_state >= 21 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 16 );
+		while ( yy_base[yy_current_state] != 26 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -626,57 +650,91 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 26 "src/Reconocedor_Tokens.l"
-{ return ADD; }
+#line 50 "src/Reconocedor_Tokens.l"
+{ printf("%s:%d:%d: Reconocido: caracter de puntuacion/operador de C: %s \n", archivo_yyin, linea_actual, columna_actual, yytext); columna_actual += yyleng; return '+'; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 27 "src/Reconocedor_Tokens.l"
-{ return SUB; }
+#line 52 "src/Reconocedor_Tokens.l"
+{ printf("%s:%d:%d: Reconocido: caracter de puntuacion/operador de C: %s \n", archivo_yyin, linea_actual, columna_actual, yytext); columna_actual += yyleng; return '-'; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 28 "src/Reconocedor_Tokens.l"
-{ return MUL; }
+#line 54 "src/Reconocedor_Tokens.l"
+{ printf("%s:%d:%d: Reconocido: caracter de puntuacion/operador de C: %s \n", archivo_yyin, linea_actual, columna_actual, yytext); columna_actual += yyleng; return '*'; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 29 "src/Reconocedor_Tokens.l"
-{ return DIV; }
+#line 56 "src/Reconocedor_Tokens.l"
+{ printf("%s:%d:%d: Reconocido: caracter de puntuacion/operador de C: %s \n", archivo_yyin, linea_actual, columna_actual, yytext); columna_actual += yyleng; return '/'; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 30 "src/Reconocedor_Tokens.l"
-{ return ABS; }
+#line 58 "src/Reconocedor_Tokens.l"
+{ 
+		printf("%s:%d:%d: Reconocido: numero: %s \n", archivo_yyin, linea_actual, columna_actual, yytext); 
+		columna_actual += yyleng;
+		yylval = (int) strtoul(yytext, NULL, 0);
+		return NUMBER;
+	}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 31 "src/Reconocedor_Tokens.l"
-{ yylval = atoi(yytext); return NUMBER; }
+#line 65 "src/Reconocedor_Tokens.l"
+{ columna_actual += yyleng; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 32 "src/Reconocedor_Tokens.l"
-{ return EOL; }
+#line 67 "src/Reconocedor_Tokens.l"
+{ linea_actual += yyleng; columna_actual = INICIO_CONTEO_COLUMNA; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 33 "src/Reconocedor_Tokens.l"
-{}
+#line 69 "src/Reconocedor_Tokens.l"
+{ fprintf(stderr, "%s:%d:%d: Error lexico: token no reconocido: %s", archivo_yyin, linea_actual, columna_actual, yytext); columna_actual += yyleng; BEGIN(tokenNoReconocido); }
+	YY_BREAK
+
+case YY_STATE_EOF(tokenNoReconocido):
+#line 71 "src/Reconocedor_Tokens.l"
+{
+        fprintf(stderr, "\n");
+        BEGIN(INITIAL);
+    }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 34 "src/Reconocedor_Tokens.l"
-{printf("Cadena desconocida: %s \n",yytext);}
+#line 75 "src/Reconocedor_Tokens.l"
+{
+        yyless(0);
+        fprintf(stderr, "\n");
+        BEGIN(INITIAL);
+    }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 36 "src/Reconocedor_Tokens.l"
+#line 80 "src/Reconocedor_Tokens.l"
+{
+        columna_actual += yyleng;
+        fprintf(stderr, "%s\n", yytext);
+        BEGIN(INITIAL);
+    }
+	YY_BREAK
+
+case YY_STATE_EOF(INITIAL):
+#line 87 "src/Reconocedor_Tokens.l"
+{ printf("%s:%d:%d: EOF alcanzado \n", archivo_yyin, linea_actual, columna_actual); yyterminate(); }
+	YY_BREAK
+/* Reglas por defecto de Flex: */
+/* <*>.|\n { ECHO; } */
+/* (ECHO; escribe yytext en la salida del escáner: FILE* yyout (variable global a la cual por defecto se le asigna stdout)) */
+/* <<EOF>> { yyterminate(); } */
+/* (yyterminate(); hace que la función yylex finalice retornando un 0, indicando un fin-de-entrada (EOF)) */
+case 11:
+YY_RULE_SETUP
+#line 95 "src/Reconocedor_Tokens.l"
 ECHO;
 	YY_BREAK
-#line 678 "obj/Reconocedor_Tokens.lex.yy.c"
-case YY_STATE_EOF(INITIAL):
-	yyterminate();
+#line 738 "obj/Reconocedor_Tokens.lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -966,7 +1024,7 @@ static yy_state_type yy_get_previous_state()
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 17 )
+			if ( yy_current_state >= 21 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
@@ -1001,11 +1059,11 @@ yy_state_type yy_current_state;
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 17 )
+		if ( yy_current_state >= 21 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
-	yy_is_jam = (yy_current_state == 16);
+	yy_is_jam = (yy_current_state == 20);
 
 	return yy_is_jam ? 0 : yy_current_state;
 	}
@@ -1560,26 +1618,33 @@ int main()
 	return 0;
 	}
 #endif
-#line 36 "src/Reconocedor_Tokens.l"
+#line 95 "src/Reconocedor_Tokens.l"
 
+/* Fin de la sección de reglas */ 
 
-int main(){
+/* Inicio de la sección de código de usuario, la cual: */
+	/* 1. Se utiliza para rutinas de complemento que llaman al analizador léxico o son llamadas por este; la presencia de esta sección es opcional */
+    /* 2. Toda esta sección simplemente se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
 
-    int tok;
+int main(void)
+{
+    int yychar;
 
-    yyin = fopen("entrada.txt","r");
+    yyin = fopen(archivo_yyin, "r");
 
-    while(tok = yylex()) {
-
-		printf("El numero de token es: %d \n", tok);
-		if(tok == NUMBER){
-		printf("Al tratarse de un numero su valor entero asociado es: %d \n",yylval);
+    while(yychar = yylex())
+	{
+		printf(" El valor del tipo de token es: %d\n", yychar);
+		if(yychar == NUMBER)
+		{
+			printf(" Al tratarse de un numero su valor asociado es: %d\n", yylval);
 		}
-
 	}
 
 	printf("Presione ENTER para continuar...\n");
 	getchar();
-	
+
 	return 0;
 }
+
+/* Fin de la sección de código de usuario */

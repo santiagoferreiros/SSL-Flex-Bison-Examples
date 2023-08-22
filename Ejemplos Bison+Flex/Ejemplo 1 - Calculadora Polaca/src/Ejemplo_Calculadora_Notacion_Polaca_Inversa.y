@@ -14,7 +14,7 @@ void yyerror(const char*);
 %}
 /* Fin de la sección de prólogo (declaraciones y definiciones de C y directivas del preprocesador) */
 
-/* Inicio de la sección de declaraciones de bison */
+/* Inicio de la sección de declaraciones de Bison */
 
 	/* Para requerir una versión mínima de Bison para procesar la gramática */
 /* %require "2.4.1" */
@@ -40,7 +40,7 @@ void yyerror(const char*);
 	/* Para especificar el no-terminal de inicio de la gramática (el axioma). Si esto se omitiera, se asumiría que es el no-terminal de la primera regla */
 %start input
 
-/* Fin de la sección de declaraciones de bison */
+/* Fin de la sección de declaraciones de Bison */
 
 /* Inicio de la sección de reglas gramaticales */
 %%
@@ -82,7 +82,7 @@ int main(void)
                 printf("Ingrese una expresion aritmetica en notacion polaca inversa para resolver:\n");
                 printf("(La funcion yyparse ha retornado con valor: %d)\n\n", yyparse());
                 /* Valor | Significado */
-                /*   0   | Análisis sintáctico exitoso (debido a un fin de entrada (EOF) denotado por el analizador léxico (yylex), ó bien a una invocación de la macro YYACCEPT) */
+                /*   0   | Análisis sintáctico exitoso (debido a un fin de entrada (EOF) indicado por el analizador léxico (yylex), ó bien a una invocación de la macro YYACCEPT) */
                 /*   1   | Fallo en el análisis sintáctico (debido a un error en el análisis sintáctico del que no se pudo recuperar, ó bien a una invocación de la macro YYABORT) */
                 /*   2   | Fallo en el análisis sintáctico (debido a un agotamiento de memoria) */
         }

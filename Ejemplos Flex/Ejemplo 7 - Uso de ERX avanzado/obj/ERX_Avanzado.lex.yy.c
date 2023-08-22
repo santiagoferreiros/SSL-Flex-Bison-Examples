@@ -380,9 +380,28 @@ static char *yy_last_accepting_cpos;
 char *yytext;
 #line 1 "src/ERX_Avanzado.l"
 #define INITIAL 0
-#line 4 "src/ERX_Avanzado.l"
+/* Inicio de la sección de definiciones. Aquí: */
+/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+/* De esas formas podemos poner declaraciones y definiciones de C y directivas del preprocesador */
+/* 2. Los comentarios (sólo hay de múltiples líneas) sin sangría también se copian tal cual al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+#line 8 "src/ERX_Avanzado.l"
+
 #include <stdio.h>
-#line 386 "obj/ERX_Avanzado.lex.yy.c"
+
+/* La siguiente línea define explícitamente a yytext como un puntero a un caracter ( char* yytext; ). Ésta es la opción por defecto si no se pone nada. */
+/* Con la siguiente opción la función de análisis int yylex(void); se comporta como si en la sección de usuario existiera la función int yywrap(void) return 1; la cual devuelve verdadero (no-cero), haciendo que una vez que la función de análisis int yylex(void) reciba una indicación de EOF desde YY_INPUT, asuma que no hay nada más para analizar de yyin y finalice (haciendo un return 0;) */
+/* Condiciones de arranque inclusivas */
+/* %s */
+/* Condiciones de arranque exclusivas */
+/* %x */
+/* Declaraciones con cada nombre y su definición; se utilizan para simplificar las reglas */
+/* digito [0-9] */
+/* Fin de la sección de definiciones */
+/* Inicio de la sección de reglas. Aquí: */
+/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+/* Esto podría utilizarse para declarar variables que son locales a la rutina de análisis léxico y (después de las declaraciones) al código que debe ejecutarse siempre que se entra a la rutina de análisis léxico */
+/* 2. NO pueden hacerse comentarios sin sangría, ya que estos no se copian literalmente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+#line 405 "obj/ERX_Avanzado.lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -533,10 +552,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 7 "src/ERX_Avanzado.l"
+#line 32 "src/ERX_Avanzado.l"
 
 
-#line 540 "obj/ERX_Avanzado.lex.yy.c"
+#line 559 "obj/ERX_Avanzado.lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -621,41 +640,46 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 9 "src/ERX_Avanzado.l"
-{printf("Se encontro el literal cadena \"Hola \"Mundo\"\n");}
+#line 34 "src/ERX_Avanzado.l"
+{ printf("Se encontro el literal cadena \"Hola \"Mundo\"\n"); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 10 "src/ERX_Avanzado.l"
-{printf("Se encontro una secuencia de caracteres que no posee vocales minusculas");}
+#line 35 "src/ERX_Avanzado.l"
+{ printf("Se encontro una secuencia de caracteres que no posee vocales minusculas\n"); }
 	YY_BREAK
 case 3:
 *yy_cp = yy_hold_char; /* undo effects of setting up yytext */
 yy_c_buf_p = yy_cp = yy_bp + 1;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 11 "src/ERX_Avanzado.l"
-{printf("Se encontro un digito del 0 al 9 que esta seguido de una letra minuscula o mayuscula \n");}
+#line 36 "src/ERX_Avanzado.l"
+{ printf("Se encontro un digito del 0 al 9 que esta seguido de una letra minuscula o mayuscula\n"); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 12 "src/ERX_Avanzado.l"
-{printf("Se encontro una letra minuscula %c \n", yytext[0]);}
+#line 37 "src/ERX_Avanzado.l"
+{ printf("Se encontro una letra minuscula %c\n", yytext[0]); }
 	YY_BREAK
 case 5:
 *yy_cp = yy_hold_char; /* undo effects of setting up yytext */
 yy_c_buf_p = yy_cp -= 1;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 13 "src/ERX_Avanzado.l"
-{printf("Se encontro la secuencia \"jaja\" antes del fin de una linea \n");}
+#line 38 "src/ERX_Avanzado.l"
+{ printf("Se encontro la secuencia \"jaja\" antes del fin de una linea\n"); }
 	YY_BREAK
+/* Reglas por defecto de Flex: */
+/* <*>.|\n { ECHO; } */
+/* (ECHO; escribe yytext en la salida del escáner: FILE* yyout (variable global a la cual por defecto se le asigna stdout)) */
+/* <<EOF>> { yyterminate(); } */
+/* (yyterminate(); hace que la función yylex finalice retornando un 0, indicando un fin-de-entrada (EOF)) */
 case 6:
 YY_RULE_SETUP
-#line 16 "src/ERX_Avanzado.l"
+#line 46 "src/ERX_Avanzado.l"
 ECHO;
 	YY_BREAK
-#line 659 "obj/ERX_Avanzado.lex.yy.c"
+#line 683 "obj/ERX_Avanzado.lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1541,6 +1565,19 @@ int main()
 	return 0;
 	}
 #endif
-#line 16 "src/ERX_Avanzado.l"
+#line 46 "src/ERX_Avanzado.l"
 
+/* Fin de la sección de reglas */ 
 
+/* Inicio de la sección de código de usuario, la cual: */
+	/* 1. Se utiliza para rutinas de complemento que llaman al analizador léxico o son llamadas por este; la presencia de esta sección es opcional */
+    /* 2. Toda esta sección simplemente se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+
+int main(void)
+{
+    yylex();
+
+    return 0;
+}
+
+/* Fin de la sección de código de usuario */

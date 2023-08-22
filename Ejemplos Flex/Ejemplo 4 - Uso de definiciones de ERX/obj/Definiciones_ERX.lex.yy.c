@@ -305,7 +305,7 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    5,    5,    5,    5,    5,    5,
         6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
         6,    6,    6,    6,    6,    6,    6,    7,    6,    6,
-        1,    1,    1,    1,    8,    1,    5,    5,    5,    5,
+        1,    1,    1,    1,    6,    1,    5,    5,    5,    5,
 
         5,    5,    6,    6,    6,    6,    6,    6,    6,    6,
         6,    6,    6,    6,    6,    6,    6,    6,    6,    7,
@@ -326,15 +326,15 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static yyconst int yy_meta[9] =
+static yyconst int yy_meta[8] =
     {   0,
-        1,    2,    2,    3,    4,    5,    6,    5
+        1,    2,    2,    3,    4,    5,    6
     } ;
 
 static yyconst short int yy_base[18] =
     {   0,
-        0,    0,   12,   24,    4,    0,    0,    3,    0,    0,
-        0,    0,   24,    7,   12,   14,   19
+        0,    0,   11,   23,    3,    0,    0,    2,    0,    0,
+        0,    0,   23,    6,   11,   13,   18
     } ;
 
 static yyconst short int yy_def[18] =
@@ -343,20 +343,18 @@ static yyconst short int yy_def[18] =
        16,   17,    0,   13,   13,   13,   13
     } ;
 
-static yyconst short int yy_nxt[33] =
+static yyconst short int yy_nxt[31] =
     {   0,
-        4,    5,    6,    6,    7,    7,    7,    7,    8,   13,
-        9,   13,    8,   10,   10,   11,   11,   11,   11,   11,
-       12,   12,   12,    3,   13,   13,   13,   13,   13,   13,
-       13,   13
+        4,    5,    6,    6,    7,    7,    7,    8,   13,    9,
+       13,    8,   10,   10,   11,   11,   11,   11,   11,   12,
+       12,   12,    3,   13,   13,   13,   13,   13,   13,   13
     } ;
 
-static yyconst short int yy_chk[33] =
+static yyconst short int yy_chk[31] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1,   14,    8,
-        5,    3,   14,   15,   15,   16,   16,   16,   16,   16,
-       17,   17,   17,   13,   13,   13,   13,   13,   13,   13,
-       13,   13
+        1,    1,    1,    1,    1,    1,    1,   14,    8,    5,
+        3,   14,   15,   15,   16,   16,   16,   16,   16,   17,
+       17,   17,   13,   13,   13,   13,   13,   13,   13,   13
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -372,9 +370,27 @@ static char *yy_last_accepting_cpos;
 char *yytext;
 #line 1 "src/Definiciones_ERX.l"
 #define INITIAL 0
-#line 4 "src/Definiciones_ERX.l"
+/* Inicio de la sección de definiciones. Aquí: */
+/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+/* De esas formas podemos poner declaraciones y definiciones de C y directivas del preprocesador */
+/* 2. Los comentarios (sólo hay de múltiples líneas) sin sangría también se copian tal cual al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+#line 8 "src/Definiciones_ERX.l"
+
 #include <stdio.h>
-#line 378 "obj/Definiciones_ERX.lex.yy.c"
+
+/* La siguiente línea define explícitamente a yytext como un puntero a un caracter ( char* yytext; ). Ésta es la opción por defecto si no se pone nada. */
+/* Con la siguiente opción la función de análisis int yylex(void); se comporta como si en la sección de usuario existiera la función int yywrap(void) return 1; la cual devuelve verdadero (no-cero), haciendo que una vez que la función de análisis int yylex(void) reciba una indicación de EOF desde YY_INPUT, asuma que no hay nada más para analizar de yyin y finalice (haciendo un return 0;) */
+/* Condiciones de arranque inclusivas */
+/* %s */
+/* Condiciones de arranque exclusivas */
+/* %x */
+/* Declaraciones con cada nombre y su definición; se utilizan para simplificar las reglas */
+/* Fin de la sección de definiciones */
+/* Inicio de la sección de reglas. Aquí: */
+/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+/* Esto podría utilizarse para declarar variables que son locales a la rutina de análisis léxico y (después de las declaraciones) al código que debe ejecutarse siempre que se entra a la rutina de análisis léxico */
+/* 2. NO pueden hacerse comentarios sin sangría, ya que estos no se copian literalmente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+#line 394 "obj/Definiciones_ERX.lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -525,10 +541,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 12 "src/Definiciones_ERX.l"
+#line 36 "src/Definiciones_ERX.l"
 
 
-#line 532 "obj/Definiciones_ERX.lex.yy.c"
+#line 548 "obj/Definiciones_ERX.lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -585,7 +601,7 @@ yy_match:
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 24 );
+		while ( yy_base[yy_current_state] != 23 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -613,30 +629,35 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 14 "src/Definiciones_ERX.l"
-{printf("Encontre la constante entera decimal que tiene como primer caracter: %c \n",yytext[0]);}
+#line 38 "src/Definiciones_ERX.l"
+{ printf("\nEncontre una constante entera decimal que tiene copmo primer caracter: %c\n", yytext[0]); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 15 "src/Definiciones_ERX.l"
-{printf("Encontre la constante entera octal que tiene como segundo caracter: %c \n",yytext[1]);}
+#line 39 "src/Definiciones_ERX.l"
+{ printf("\nEncontre una constante entera octal que tiene como segundo caracter: %c\n", yytext[1]); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 16 "src/Definiciones_ERX.l"
-{printf("Encontre la constante entera hexadecimal: %s \n",yytext);}
+#line 40 "src/Definiciones_ERX.l"
+{ printf("\nEncontre una constante entera hexadecimal: %s\n", yytext); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 17 "src/Definiciones_ERX.l"
-{printf("Encontre el identificador: %s \n",yytext);}
+#line 41 "src/Definiciones_ERX.l"
+{ printf("\nEncontre un identificador: %s\n", yytext); }
 	YY_BREAK
+/* Reglas por defecto de Flex: */
+/* <*>.|\n { ECHO; } */
+/* (ECHO; escribe yytext en la salida del escáner: FILE* yyout (variable global a la cual por defecto se le asigna stdout)) */
+/* <<EOF>> { yyterminate(); } */
+/* (yyterminate(); hace que la función yylex finalice retornando un 0, indicando un fin-de-entrada (EOF)) */
 case 5:
 YY_RULE_SETUP
-#line 19 "src/Definiciones_ERX.l"
+#line 49 "src/Definiciones_ERX.l"
 ECHO;
 	YY_BREAK
-#line 640 "obj/Definiciones_ERX.lex.yy.c"
+#line 661 "obj/Definiciones_ERX.lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1522,4 +1543,19 @@ int main()
 	return 0;
 	}
 #endif
-#line 19 "src/Definiciones_ERX.l"
+#line 49 "src/Definiciones_ERX.l"
+
+/* Fin de la sección de reglas */ 
+
+/* Inicio de la sección de código de usuario, la cual: */
+	/* 1. Se utiliza para rutinas de complemento que llaman al analizador léxico o son llamadas por este; la presencia de esta sección es opcional */
+    /* 2. Toda esta sección simplemente se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
+
+int main(void)
+{
+    yylex();
+
+    return 0;
+}
+
+/* Fin de la sección de código de usuario */
