@@ -262,9 +262,6 @@ static void yy_flex_free YY_PROTO(( void * ));
 
 #define YY_AT_BOL() (yy_current_buffer->yy_at_bol)
 
-
-#define yywrap() 1
-#define YY_SKIP_YYWRAP
 typedef unsigned char YY_CHAR;
 FILE *yyin = (FILE *) 0, *yyout = (FILE *) 0;
 typedef int yy_state_type;
@@ -286,14 +283,13 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 	*yy_cp = '\0'; \
 	yy_c_buf_p = yy_cp;
 
-#define YY_NUM_RULES 15
-#define YY_END_OF_BUFFER 16
-static yyconst short int yy_accept[39] =
+#define YY_NUM_RULES 10
+#define YY_END_OF_BUFFER 11
+static yyconst short int yy_accept[30] =
     {   0,
-        0,    0,    0,    0,   16,   12,   10,   11,    7,    1,
-        9,    8,    6,    6,    6,    6,    6,   14,   13,   10,
-        1,    6,    6,    6,    6,    6,   14,    6,    6,    6,
-        3,    2,    6,    6,    6,    4,    5,    0
+        0,    0,   11,    9,    8,    7,    4,    1,    6,    5,
+        3,    3,    3,    3,    3,    1,    3,    3,    3,    3,
+        3,    3,    3,    3,    2,    3,    3,    3,    0
     } ;
 
 static yyconst int yy_ec[256] =
@@ -301,17 +297,17 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    4,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    5,    1,    1,    1,    6,    6,    6,
-        6,    6,    6,    6,    6,    6,    6,    1,    7,    1,
-        8,    1,    1,    1,    9,    9,    9,    9,    9,    9,
-        9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-        9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-        1,    1,    1,    1,    9,    1,   10,   11,   12,   13,
+        1,    2,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    4,    1,    1,    1,    5,    5,    5,
+        5,    5,    5,    5,    5,    5,    5,    1,    6,    1,
+        7,    1,    1,    1,    8,    8,    8,    8,    8,    8,
+        8,    8,    8,    8,    8,    8,    8,    8,    8,    8,
+        8,    8,    8,    8,    8,    8,    8,    8,    8,    8,
+        1,    1,    1,    1,    8,    1,    9,   10,   11,   12,
 
-       14,   15,    9,   16,   17,    9,    9,   18,    9,   19,
-       20,    9,    9,   21,    9,   22,   23,    9,    9,    9,
-        9,    9,    1,    1,    1,    1,    1,    1,    1,    1,
+       13,   14,    8,   15,   16,    8,    8,   17,    8,   18,
+       19,    8,    8,   20,    8,   21,   22,    8,    8,    8,
+        8,    8,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -328,53 +324,47 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static yyconst int yy_meta[24] =
+static yyconst int yy_meta[23] =
     {   0,
-        1,    2,    2,    2,    1,    3,    1,    1,    3,    3,
-        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
-        3,    3,    3
+        1,    1,    1,    1,    2,    1,    1,    2,    2,    2,
+        2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
+        2,    2
     } ;
 
-static yyconst short int yy_base[42] =
+static yyconst short int yy_base[31] =
     {   0,
-        0,    0,   22,   25,   56,   57,   28,   57,   57,   49,
-       57,   57,    0,   38,   33,   34,   32,    0,   57,   29,
-       44,    0,   39,   25,   27,   24,    0,   24,   33,   33,
-        0,    0,   24,   19,   26,    0,    0,   57,   33,   35,
-       36
+        0,    0,   40,   41,   41,   41,   41,   34,   41,   41,
+        0,   23,   18,   19,   17,   29,    0,   24,   10,   12,
+        9,    9,   18,   18,    0,    9,    4,   11,   41,   21
     } ;
 
-static yyconst short int yy_def[42] =
+static yyconst short int yy_def[31] =
     {   0,
-       38,    1,   39,   39,   38,   38,   38,   38,   38,   38,
-       38,   38,   40,   40,   40,   40,   40,   41,   38,   38,
-       38,   40,   40,   40,   40,   40,   41,   40,   40,   40,
-       40,   40,   40,   40,   40,   40,   40,    0,   38,   38,
-       38
+       29,    1,   29,   29,   29,   29,   29,   29,   29,   29,
+       30,   30,   30,   30,   30,   29,   30,   30,   30,   30,
+       30,   30,   30,   30,   30,   30,   30,   30,    0,   29
     } ;
 
-static yyconst short int yy_nxt[81] =
+static yyconst short int yy_nxt[64] =
     {   0,
-        6,    7,    8,    7,    9,   10,   11,   12,   13,   13,
-       13,   14,   15,   13,   16,   13,   17,   13,   13,   13,
-       13,   13,   13,   19,   19,   19,   19,   19,   19,   20,
-       20,   20,   20,   18,   18,   18,   27,   22,   27,   37,
-       36,   35,   34,   33,   32,   31,   30,   29,   28,   21,
-       26,   25,   24,   23,   21,   38,    5,   38,   38,   38,
-       38,   38,   38,   38,   38,   38,   38,   38,   38,   38,
-       38,   38,   38,   38,   38,   38,   38,   38,   38,   38
+        4,    5,    6,    7,    8,    9,   10,   11,   11,   11,
+       12,   13,   11,   14,   11,   15,   11,   11,   11,   11,
+       11,   11,   17,   25,   25,   28,   27,   26,   25,   25,
+       24,   23,   22,   16,   21,   20,   19,   18,   16,   29,
+        3,   29,   29,   29,   29,   29,   29,   29,   29,   29,
+       29,   29,   29,   29,   29,   29,   29,   29,   29,   29,
+       29,   29,   29
     } ;
 
-static yyconst short int yy_chk[81] =
+static yyconst short int yy_chk[64] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    3,    3,    3,    4,    4,    4,    7,
-       20,    7,   20,   39,   39,   39,   41,   40,   41,   35,
-       34,   33,   30,   29,   28,   26,   25,   24,   23,   21,
-       17,   16,   15,   14,   10,    5,   38,   38,   38,   38,
-       38,   38,   38,   38,   38,   38,   38,   38,   38,   38,
-       38,   38,   38,   38,   38,   38,   38,   38,   38,   38
+        1,    1,   30,   28,   27,   26,   24,   23,   22,   21,
+       20,   19,   18,   16,   15,   14,   13,   12,    8,    3,
+       29,   29,   29,   29,   29,   29,   29,   29,   29,   29,
+       29,   29,   29,   29,   29,   29,   29,   29,   29,   29,
+       29,   29,   29
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -390,34 +380,11 @@ static char *yy_last_accepting_cpos;
 char *yytext;
 #line 1 "src/Ejemplo_DeclaracionVariables.l"
 #define INITIAL 0
-/* Inicio de la sección de definiciones. Aquí: */
-/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
-/* De esas formas podemos poner declaraciones y definiciones de C y directivas del preprocesador */
-/* 2. Los comentarios (sólo hay de múltiples líneas) sin sangría también se copian tal cual al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
-#line 8 "src/Ejemplo_DeclaracionVariables.l"
-
+#line 2 "src/Ejemplo_DeclaracionVariables.l"
+#include "Ejemplo_DeclaracionVariables.tab.h"
 #include <stdio.h>
 #include <string.h>
-
-#include "general.h"
-
-/* Es indispensable que incluyamos el archivo de cabecera con las definiciones de YACC (*.tab.h) que se genera a partir del archivo fuente de YACC (*.y) */
-#include "Ejemplo_DeclaracionVariables.tab.h"
-
-/* La siguiente línea define explícitamente a yytext como un puntero a un caracter ( char* yytext; ). Ésta es la opción por defecto si no se pone nada. */
-/* Con la siguiente opción la función de análisis int yylex(void); se comporta como si en la sección de usuario existiera la función int yywrap(void) return 1; la cual devuelve verdadero (no-cero), haciendo que una vez que la función de análisis int yylex(void) reciba una indicación de EOF desde YY_INPUT, asuma que no hay nada más para analizar de yyin y finalice (haciendo un return 0;) */
-/* Condiciones de arranque inclusivas */
-/* %s */
-/* Condiciones de arranque exclusivas */
-#define tokenNoReconocido 1
-
-/* Declaraciones con cada nombre y su definición; se utilizan para simplificar las reglas */
-/* Fin de la sección de definiciones */
-/* Inicio de la sección de reglas. Aquí: */
-/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
-/* Esto podría utilizarse para declarar variables que son locales a la rutina de análisis léxico y (después de las declaraciones) al código que debe ejecutarse siempre que se entra a la rutina de análisis léxico */
-/* 2. NO pueden hacerse comentarios sin sangría, ya que estos no se copian literalmente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
-#line 421 "obj/Ejemplo_DeclaracionVariables.lex.yy.c"
+#line 388 "obj/Ejemplo_DeclaracionVariables.lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -568,12 +535,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 38 "src/Ejemplo_DeclaracionVariables.l"
+#line 8 "src/Ejemplo_DeclaracionVariables.l"
 
 
-    reinicializarUbicacion();
-
-#line 577 "obj/Ejemplo_DeclaracionVariables.lex.yy.c"
+#line 542 "obj/Ejemplo_DeclaracionVariables.lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -624,13 +589,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 39 )
+				if ( yy_current_state >= 30 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 57 );
+		while ( yy_base[yy_current_state] != 41 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -658,105 +623,56 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 42 "src/Ejemplo_DeclaracionVariables.l"
-{
-        yylloc.last_column += yyleng;
-        yylval.int_type = (int) strtoul(yytext, NULL, 0);
-        return NUM;
-    }
+#line 10 "src/Ejemplo_DeclaracionVariables.l"
+{yylval.entero=atoi(yytext); return NUM;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 48 "src/Ejemplo_DeclaracionVariables.l"
-{ yylloc.last_column += yyleng; return CHAR_TOKEN; }
+#line 11 "src/Ejemplo_DeclaracionVariables.l"
+{strcpy(yylval.cadena,yytext); return TIPO_DATO;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 49 "src/Ejemplo_DeclaracionVariables.l"
-{ yylloc.last_column += yyleng; return INT_TOKEN; }
+#line 12 "src/Ejemplo_DeclaracionVariables.l"
+{strcpy(yylval.cadena,yytext); return IDENTIFICADOR;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 50 "src/Ejemplo_DeclaracionVariables.l"
-{ yylloc.last_column += yyleng; return FLOAT_TOKEN; }
+#line 13 "src/Ejemplo_DeclaracionVariables.l"
+{return ',';}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 51 "src/Ejemplo_DeclaracionVariables.l"
-{ yylloc.last_column += yyleng; return DOUBLE_TOKEN; }
+#line 14 "src/Ejemplo_DeclaracionVariables.l"
+{return '=';}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 53 "src/Ejemplo_DeclaracionVariables.l"
-{ strcpy(yylval.char_array_type, yytext); return IDENTIFICADOR; }
+#line 15 "src/Ejemplo_DeclaracionVariables.l"
+{return ';';}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 55 "src/Ejemplo_DeclaracionVariables.l"
-{ yylloc.last_column += yyleng; return ','; }
+#line 16 "src/Ejemplo_DeclaracionVariables.l"
+{return '\n';}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 57 "src/Ejemplo_DeclaracionVariables.l"
-{ yylloc.last_column += yyleng; return '='; }
+#line 17 "src/Ejemplo_DeclaracionVariables.l"
+
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 59 "src/Ejemplo_DeclaracionVariables.l"
-{ yylloc.last_column += yyleng; return ';'; }
+#line 18 "src/Ejemplo_DeclaracionVariables.l"
+
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 61 "src/Ejemplo_DeclaracionVariables.l"
-{ yylloc.first_column = yylloc.last_column += yyleng; }
-	YY_BREAK
-case 11:
-YY_RULE_SETUP
-#line 63 "src/Ejemplo_DeclaracionVariables.l"
-{
-        yylloc.first_line = yylloc.last_line += yyleng;
-        yylloc.first_column = yylloc.last_column = INICIO_CONTEO_COLUMNA;
-        return '\n';
-    }
-	YY_BREAK
-case 12:
-YY_RULE_SETUP
-#line 69 "src/Ejemplo_DeclaracionVariables.l"
-{ yylloc.last_column += yyleng; fprintf(stderr, "Flex: %d:%d: Error lexico: token no reconocido: %s", yylloc.first_line, yylloc.first_column, yytext); BEGIN(tokenNoReconocido); }
-	YY_BREAK
-
-case 13:
-YY_RULE_SETUP
-#line 71 "src/Ejemplo_DeclaracionVariables.l"
-{
-        yyless(0);
-        fprintf(stderr, "\n");
-        BEGIN(INITIAL);
-    }
-	YY_BREAK
-case 14:
-YY_RULE_SETUP
-#line 76 "src/Ejemplo_DeclaracionVariables.l"
-{
-        yylloc.last_column += yyleng;
-        fprintf(stderr, "%s\n", yytext);
-        BEGIN(INITIAL);
-    }
-	YY_BREAK
-
-/* Reglas por defecto de Flex: */
-/* <*>.|\n { ECHO; } */
-/* (ECHO; escribe yytext en la salida del escáner: FILE* yyout (variable global a la cual por defecto se le asigna stdout)) */
-/* <<EOF>> { yyterminate(); } */
-/* (yyterminate(); hace que la función yylex finalice retornando un 0, indicando un fin-de-entrada (EOF)) */
-case 15:
-YY_RULE_SETUP
-#line 89 "src/Ejemplo_DeclaracionVariables.l"
+#line 20 "src/Ejemplo_DeclaracionVariables.l"
 ECHO;
 	YY_BREAK
-#line 758 "obj/Ejemplo_DeclaracionVariables.lex.yy.c"
+#line 675 "obj/Ejemplo_DeclaracionVariables.lex.yy.c"
 case YY_STATE_EOF(INITIAL):
-case YY_STATE_EOF(tokenNoReconocido):
 	yyterminate();
 
 	case YY_END_OF_BUFFER:
@@ -1047,7 +963,7 @@ static yy_state_type yy_get_previous_state()
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 39 )
+			if ( yy_current_state >= 30 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
@@ -1082,11 +998,11 @@ yy_state_type yy_current_state;
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 39 )
+		if ( yy_current_state >= 30 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
-	yy_is_jam = (yy_current_state == 38);
+	yy_is_jam = (yy_current_state == 29);
 
 	return yy_is_jam ? 0 : yy_current_state;
 	}
@@ -1641,12 +1557,4 @@ int main()
 	return 0;
 	}
 #endif
-#line 89 "src/Ejemplo_DeclaracionVariables.l"
-
-/* Fin de la sección de reglas */ 
-
-/* Inicio de la sección de código de usuario, la cual: */
-	/* 1. Se utiliza para rutinas de complemento que llaman al analizador léxico o son llamadas por este; la presencia de esta sección es opcional */
-    /* 2. Toda esta sección simplemente se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
-
-/* Fin de la sección de código de usuario */
+#line 20 "src/Ejemplo_DeclaracionVariables.l"

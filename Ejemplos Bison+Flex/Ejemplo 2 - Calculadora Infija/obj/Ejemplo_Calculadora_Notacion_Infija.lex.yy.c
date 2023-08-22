@@ -290,9 +290,9 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 #define YY_END_OF_BUFFER 17
 static yyconst short int yy_accept[30] =
     {   0,
-        0,    0,    0,    0,   17,   11,   14,   15,    9,   10,
-        6,    4,    5,   11,    7,    2,   11,    8,   13,   12,
-       14,    1,    1,    2,    0,    0,   13,    3,    0
+        0,    0,    0,    0,   17,   13,   11,   12,    9,   10,
+        6,    4,    5,   13,    7,    2,   13,    8,   15,   14,
+       11,    1,    1,    2,    0,    0,   15,    3,    0
     } ;
 
 static yyconst int yy_ec[256] =
@@ -385,9 +385,9 @@ char *yytext;
 #line 1 "src/Ejemplo_Calculadora_Notacion_Infija.l"
 #define INITIAL 0
 /* Inicio de la sección de definiciones. Aquí: */
-/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado */
+/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
 /* De esas formas podemos poner declaraciones y definiciones de C y directivas del preprocesador */
-/* 2. Los comentarios (sólo hay de múltiples líneas) sin sangría también se copian tal cual a la salida */
+/* 2. Los comentarios (sólo hay de múltiples líneas) sin sangría también se copian tal cual al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
 #line 8 "src/Ejemplo_Calculadora_Notacion_Infija.l"
 
 #include "general.h"
@@ -405,9 +405,9 @@ char *yytext;
 /* Declaraciones con cada nombre y su definición; se utilizan para simplificar las reglas */
 /* Fin de la sección de definiciones */
 /* Inicio de la sección de reglas. Aquí: */
-/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado */
+/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
 /* Esto podría utilizarse para declarar variables que son locales a la rutina de análisis léxico y (después de las declaraciones) al código que debe ejecutarse siempre que se entra a la rutina de análisis léxico */
-/* 2. NO pueden hacerse comentarios sin sangría, ya que estos no se copian literalmente a la salida */
+/* 2. NO pueden hacerse comentarios sin sangría, ya que estos no se copian literalmente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
 #line 412 "obj/Ejemplo_Calculadora_Notacion_Infija.lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
@@ -713,28 +713,42 @@ YY_RULE_SETUP
 case 11:
 YY_RULE_SETUP
 #line 74 "src/Ejemplo_Calculadora_Notacion_Infija.l"
+{ yylloc.first_column = yylloc.last_column += yyleng; }
+	YY_BREAK
+case 12:
+YY_RULE_SETUP
+#line 76 "src/Ejemplo_Calculadora_Notacion_Infija.l"
+{
+        yylloc.first_line = yylloc.last_line += yyleng;
+        yylloc.first_column = yylloc.last_column = INICIO_CONTEO_COLUMNA;
+        return '\n';
+    }
+	YY_BREAK
+case 13:
+YY_RULE_SETUP
+#line 82 "src/Ejemplo_Calculadora_Notacion_Infija.l"
 { yylloc.last_column += yyleng; fprintf(stderr, "Flex: %d:%d: Error lexico: token no reconocido: %s", yylloc.first_line, yylloc.first_column, yytext); BEGIN(tokenNoReconocido); }
 	YY_BREAK
 
 case YY_STATE_EOF(tokenNoReconocido):
-#line 76 "src/Ejemplo_Calculadora_Notacion_Infija.l"
+#line 84 "src/Ejemplo_Calculadora_Notacion_Infija.l"
 {
         fprintf(stderr, "\n");
         BEGIN(INITIAL);
     }
 	YY_BREAK
-case 12:
+case 14:
 YY_RULE_SETUP
-#line 80 "src/Ejemplo_Calculadora_Notacion_Infija.l"
+#line 88 "src/Ejemplo_Calculadora_Notacion_Infija.l"
 {
         yyless(0);
         fprintf(stderr, "\n");
         BEGIN(INITIAL);
     }
 	YY_BREAK
-case 13:
+case 15:
 YY_RULE_SETUP
-#line 85 "src/Ejemplo_Calculadora_Notacion_Infija.l"
+#line 93 "src/Ejemplo_Calculadora_Notacion_Infija.l"
 {
         yylloc.last_column += yyleng;
         fprintf(stderr, "%s\n", yytext);
@@ -742,30 +756,19 @@ YY_RULE_SETUP
     }
 	YY_BREAK
 
-case 14:
-YY_RULE_SETUP
-#line 92 "src/Ejemplo_Calculadora_Notacion_Infija.l"
-{ yylloc.first_column = yylloc.last_column += yyleng; }
-	YY_BREAK
-case 15:
-YY_RULE_SETUP
-#line 94 "src/Ejemplo_Calculadora_Notacion_Infija.l"
-{
-        yylloc.first_line = yylloc.last_line += yyleng;
-        yylloc.first_column = yylloc.last_column = INICIO_CONTEO_COLUMNA;
-        return '\n';
-    }
-	YY_BREAK
-case YY_STATE_EOF(INITIAL):
-#line 100 "src/Ejemplo_Calculadora_Notacion_Infija.l"
-{ return 0; }
-	YY_BREAK
+/* Reglas por defecto de Flex: */
+/* <*>.|\n { ECHO; } */
+/* (ECHO; escribe yytext en la salida del escáner: FILE* yyout (variable global a la cual por defecto se le asigna stdout)) */
+/* <<EOF>> { yyterminate(); } */
+/* (yyterminate(); hace que la función yylex finalice retornando un 0, indicando un fin-de-entrada (EOF)) */
 case 16:
 YY_RULE_SETUP
-#line 102 "src/Ejemplo_Calculadora_Notacion_Infija.l"
+#line 106 "src/Ejemplo_Calculadora_Notacion_Infija.l"
 ECHO;
 	YY_BREAK
-#line 769 "obj/Ejemplo_Calculadora_Notacion_Infija.lex.yy.c"
+#line 770 "obj/Ejemplo_Calculadora_Notacion_Infija.lex.yy.c"
+case YY_STATE_EOF(INITIAL):
+	yyterminate();
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1649,12 +1652,12 @@ int main()
 	return 0;
 	}
 #endif
-#line 102 "src/Ejemplo_Calculadora_Notacion_Infija.l"
+#line 106 "src/Ejemplo_Calculadora_Notacion_Infija.l"
 
 /* Fin de la sección de reglas */ 
 
 /* Inicio de la sección de código de usuario, la cual: */
 	/* 1. Se utiliza para rutinas de complemento que llaman al analizador léxico o son llamadas por este; la presencia de esta sección es opcional */
-    /* 2. Toda esta sección simplemente se copia íntegramente al archivo de salida del analizador léxico (scanner) generado */
+    /* 2. Toda esta sección simplemente se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
 
 /* Fin de la sección de código de usuario */

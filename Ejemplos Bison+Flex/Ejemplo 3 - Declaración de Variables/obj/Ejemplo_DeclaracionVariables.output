@@ -8,64 +8,58 @@ Gramática
     3 line: '\n'
     4     | sentenciaDeclaracion '\n'
 
-    5 sentenciaDeclaracion: especificador_de_tipo lista_identificadores ';'
-    6                     | error caracterDeCorte
+    5 $@1: /* vacío */
 
-    7 lista_identificadores: factorizacion_identificadorA
-    8                      | factorizacion_identificadorA ',' lista_identificadores
+    6 sentenciaDeclaracion: TIPO_DATO $@1 listaIdentificadores ';'
+    7                     | error caracterDeCorte
 
-    9 factorizacion_identificadorA: IDENTIFICADOR
-   10                             | IDENTIFICADOR '=' expresion
-   11                             | error
+    8 listaIdentificadores: identificadorA
+    9                     | identificadorA ',' listaIdentificadores
 
-   12 especificador_de_tipo: "char"
-   13                      | "int"
-   14                      | "float"
-   15                      | "double"
+   10 identificadorA: IDENTIFICADOR
+   11               | IDENTIFICADOR '=' expresion
+   12               | error
 
-   16 expresion: NUM
-   17          | error
+   13 expresion: NUM
+   14          | error
 
-   18 caracterDeCorte: ';'
-   19                | '\n'
+   15 caracterDeCorte: ';'
+   16                | '\n'
 
 
 Terminales con las reglas donde aparecen
 
 $end (0) 0
-'\n' (10) 3 4 19
-',' (44) 8
-';' (59) 5 18
-'=' (61) 10
-error (256) 6 11 17
-NUM (258) 16
-IDENTIFICADOR (259) 9 10
-"char" (260) 12
-"int" (261) 13
-"float" (262) 14
-"double" (263) 15
+'\n' (10) 3 4 16
+',' (44) 9
+';' (59) 6 15
+'=' (61) 11
+error (256) 7 12 14
+NUM (258) 13
+IDENTIFICADOR (259) 10 11
+TIPO_DATO (260) 6
 
 
 No terminales con las reglas donde aparecen
 
-$accept (13)
+$accept (10)
     en la izquierda: 0
-input (14)
+input (11)
     en la izquierda: 1 2, en la derecha: 0 2
-line (15)
+line (12)
     en la izquierda: 3 4, en la derecha: 2
-sentenciaDeclaracion (16)
-    en la izquierda: 5 6, en la derecha: 4
-lista_identificadores (17)
-    en la izquierda: 7 8, en la derecha: 5 8
-factorizacion_identificadorA (18)
-    en la izquierda: 9 10 11, en la derecha: 7 8
-especificador_de_tipo (19)
-    en la izquierda: 12 13 14 15, en la derecha: 5
-expresion (20)
-    en la izquierda: 16 17, en la derecha: 10
-caracterDeCorte (21)
-    en la izquierda: 18 19, en la derecha: 6
+sentenciaDeclaracion (13)
+    en la izquierda: 6 7, en la derecha: 4
+$@1 (14)
+    en la izquierda: 5, en la derecha: 6
+listaIdentificadores (15)
+    en la izquierda: 8 9, en la derecha: 6 9
+identificadorA (16)
+    en la izquierda: 10 11 12, en la derecha: 8 9
+expresion (17)
+    en la izquierda: 13 14, en la derecha: 11
+caracterDeCorte (18)
+    en la izquierda: 15 16, en la derecha: 7
 
 
 estado 0
@@ -85,24 +79,16 @@ estado 1
     2 input: input . line
     3 line: . '\n'
     4     | . sentenciaDeclaracion '\n'
-    5 sentenciaDeclaracion: . especificador_de_tipo lista_identificadores ';'
-    6                     | . error caracterDeCorte
-   12 especificador_de_tipo: . "char"
-   13                      | . "int"
-   14                      | . "float"
-   15                      | . "double"
+    6 sentenciaDeclaracion: . TIPO_DATO $@1 listaIdentificadores ';'
+    7                     | . error caracterDeCorte
 
-    $end      desplazar e ir al estado 2
-    error     desplazar e ir al estado 3
-    "char"    desplazar e ir al estado 4
-    "int"     desplazar e ir al estado 5
-    "float"   desplazar e ir al estado 6
-    "double"  desplazar e ir al estado 7
-    '\n'      desplazar e ir al estado 8
+    $end       desplazar e ir al estado 2
+    error      desplazar e ir al estado 3
+    TIPO_DATO  desplazar e ir al estado 4
+    '\n'       desplazar e ir al estado 5
 
-    line                   ir al estado 9
-    sentenciaDeclaracion   ir al estado 10
-    especificador_de_tipo  ir al estado 11
+    line                  ir al estado 6
+    sentenciaDeclaracion  ir al estado 7
 
 
 estado 2
@@ -114,201 +100,183 @@ estado 2
 
 estado 3
 
-    6 sentenciaDeclaracion: error . caracterDeCorte
-   18 caracterDeCorte: . ';'
-   19                | . '\n'
+    7 sentenciaDeclaracion: error . caracterDeCorte
+   15 caracterDeCorte: . ';'
+   16                | . '\n'
 
-    '\n'  desplazar e ir al estado 12
-    ';'   desplazar e ir al estado 13
+    '\n'  desplazar e ir al estado 8
+    ';'   desplazar e ir al estado 9
 
-    caracterDeCorte  ir al estado 14
+    caracterDeCorte  ir al estado 10
 
 
 estado 4
 
-   12 especificador_de_tipo: "char" .
+    5 $@1: .
+    6 sentenciaDeclaracion: TIPO_DATO . $@1 listaIdentificadores ';'
 
-    $default  reduce usando la regla 12 (especificador_de_tipo)
+    $default  reduce usando la regla 5 ($@1)
+
+    $@1  ir al estado 11
 
 
 estado 5
-
-   13 especificador_de_tipo: "int" .
-
-    $default  reduce usando la regla 13 (especificador_de_tipo)
-
-
-estado 6
-
-   14 especificador_de_tipo: "float" .
-
-    $default  reduce usando la regla 14 (especificador_de_tipo)
-
-
-estado 7
-
-   15 especificador_de_tipo: "double" .
-
-    $default  reduce usando la regla 15 (especificador_de_tipo)
-
-
-estado 8
 
     3 line: '\n' .
 
     $default  reduce usando la regla 3 (line)
 
 
-estado 9
+estado 6
 
     2 input: input line .
 
     $default  reduce usando la regla 2 (input)
 
 
-estado 10
+estado 7
 
     4 line: sentenciaDeclaracion . '\n'
 
-    '\n'  desplazar e ir al estado 15
+    '\n'  desplazar e ir al estado 12
+
+
+estado 8
+
+   16 caracterDeCorte: '\n' .
+
+    $default  reduce usando la regla 16 (caracterDeCorte)
+
+
+estado 9
+
+   15 caracterDeCorte: ';' .
+
+    $default  reduce usando la regla 15 (caracterDeCorte)
+
+
+estado 10
+
+    7 sentenciaDeclaracion: error caracterDeCorte .
+
+    $default  reduce usando la regla 7 (sentenciaDeclaracion)
 
 
 estado 11
 
-    5 sentenciaDeclaracion: especificador_de_tipo . lista_identificadores ';'
-    7 lista_identificadores: . factorizacion_identificadorA
-    8                      | . factorizacion_identificadorA ',' lista_identificadores
-    9 factorizacion_identificadorA: . IDENTIFICADOR
-   10                             | . IDENTIFICADOR '=' expresion
-   11                             | . error
+    6 sentenciaDeclaracion: TIPO_DATO $@1 . listaIdentificadores ';'
+    8 listaIdentificadores: . identificadorA
+    9                     | . identificadorA ',' listaIdentificadores
+   10 identificadorA: . IDENTIFICADOR
+   11               | . IDENTIFICADOR '=' expresion
+   12               | . error
 
-    error          desplazar e ir al estado 16
-    IDENTIFICADOR  desplazar e ir al estado 17
+    error          desplazar e ir al estado 13
+    IDENTIFICADOR  desplazar e ir al estado 14
 
-    lista_identificadores         ir al estado 18
-    factorizacion_identificadorA  ir al estado 19
+    listaIdentificadores  ir al estado 15
+    identificadorA        ir al estado 16
 
 
 estado 12
-
-   19 caracterDeCorte: '\n' .
-
-    $default  reduce usando la regla 19 (caracterDeCorte)
-
-
-estado 13
-
-   18 caracterDeCorte: ';' .
-
-    $default  reduce usando la regla 18 (caracterDeCorte)
-
-
-estado 14
-
-    6 sentenciaDeclaracion: error caracterDeCorte .
-
-    $default  reduce usando la regla 6 (sentenciaDeclaracion)
-
-
-estado 15
 
     4 line: sentenciaDeclaracion '\n' .
 
     $default  reduce usando la regla 4 (line)
 
 
+estado 13
+
+   12 identificadorA: error .
+
+    $default  reduce usando la regla 12 (identificadorA)
+
+
+estado 14
+
+   10 identificadorA: IDENTIFICADOR .  [';', ',']
+   11               | IDENTIFICADOR . '=' expresion
+
+    '='  desplazar e ir al estado 17
+
+    $default  reduce usando la regla 10 (identificadorA)
+
+
+estado 15
+
+    6 sentenciaDeclaracion: TIPO_DATO $@1 listaIdentificadores . ';'
+
+    ';'  desplazar e ir al estado 18
+
+
 estado 16
 
-   11 factorizacion_identificadorA: error .
+    8 listaIdentificadores: identificadorA .  [';']
+    9                     | identificadorA . ',' listaIdentificadores
 
-    $default  reduce usando la regla 11 (factorizacion_identificadorA)
+    ','  desplazar e ir al estado 19
+
+    $default  reduce usando la regla 8 (listaIdentificadores)
 
 
 estado 17
 
-    9 factorizacion_identificadorA: IDENTIFICADOR .  [';', ',']
-   10                             | IDENTIFICADOR . '=' expresion
+   11 identificadorA: IDENTIFICADOR '=' . expresion
+   13 expresion: . NUM
+   14          | . error
 
-    '='  desplazar e ir al estado 20
+    error  desplazar e ir al estado 20
+    NUM    desplazar e ir al estado 21
 
-    $default  reduce usando la regla 9 (factorizacion_identificadorA)
+    expresion  ir al estado 22
 
 
 estado 18
 
-    5 sentenciaDeclaracion: especificador_de_tipo lista_identificadores . ';'
+    6 sentenciaDeclaracion: TIPO_DATO $@1 listaIdentificadores ';' .
 
-    ';'  desplazar e ir al estado 21
+    $default  reduce usando la regla 6 (sentenciaDeclaracion)
 
 
 estado 19
 
-    7 lista_identificadores: factorizacion_identificadorA .  [';']
-    8                      | factorizacion_identificadorA . ',' lista_identificadores
+    8 listaIdentificadores: . identificadorA
+    9                     | . identificadorA ',' listaIdentificadores
+    9                     | identificadorA ',' . listaIdentificadores
+   10 identificadorA: . IDENTIFICADOR
+   11               | . IDENTIFICADOR '=' expresion
+   12               | . error
 
-    ','  desplazar e ir al estado 22
+    error          desplazar e ir al estado 13
+    IDENTIFICADOR  desplazar e ir al estado 14
 
-    $default  reduce usando la regla 7 (lista_identificadores)
+    listaIdentificadores  ir al estado 23
+    identificadorA        ir al estado 16
 
 
 estado 20
 
-   10 factorizacion_identificadorA: IDENTIFICADOR '=' . expresion
-   16 expresion: . NUM
-   17          | . error
+   14 expresion: error .
 
-    error  desplazar e ir al estado 23
-    NUM    desplazar e ir al estado 24
-
-    expresion  ir al estado 25
+    $default  reduce usando la regla 14 (expresion)
 
 
 estado 21
 
-    5 sentenciaDeclaracion: especificador_de_tipo lista_identificadores ';' .
+   13 expresion: NUM .
 
-    $default  reduce usando la regla 5 (sentenciaDeclaracion)
+    $default  reduce usando la regla 13 (expresion)
 
 
 estado 22
 
-    7 lista_identificadores: . factorizacion_identificadorA
-    8                      | . factorizacion_identificadorA ',' lista_identificadores
-    8                      | factorizacion_identificadorA ',' . lista_identificadores
-    9 factorizacion_identificadorA: . IDENTIFICADOR
-   10                             | . IDENTIFICADOR '=' expresion
-   11                             | . error
+   11 identificadorA: IDENTIFICADOR '=' expresion .
 
-    error          desplazar e ir al estado 16
-    IDENTIFICADOR  desplazar e ir al estado 17
-
-    lista_identificadores         ir al estado 26
-    factorizacion_identificadorA  ir al estado 19
+    $default  reduce usando la regla 11 (identificadorA)
 
 
 estado 23
 
-   17 expresion: error .
+    9 listaIdentificadores: identificadorA ',' listaIdentificadores .
 
-    $default  reduce usando la regla 17 (expresion)
-
-
-estado 24
-
-   16 expresion: NUM .
-
-    $default  reduce usando la regla 16 (expresion)
-
-
-estado 25
-
-   10 factorizacion_identificadorA: IDENTIFICADOR '=' expresion .
-
-    $default  reduce usando la regla 10 (factorizacion_identificadorA)
-
-
-estado 26
-
-    8 lista_identificadores: factorizacion_identificadorA ',' lista_identificadores .
-
-    $default  reduce usando la regla 8 (lista_identificadores)
+    $default  reduce usando la regla 9 (listaIdentificadores)

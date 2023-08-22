@@ -290,8 +290,8 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 #define YY_END_OF_BUFFER 13
 static yyconst short int yy_accept[21] =
     {   0,
-        0,    0,    0,    0,   13,    7,   10,   11,    4,    2,
-        3,    5,    1,    6,    9,    8,   10,    1,    9,    0
+        0,    0,    0,    0,   13,    9,    7,    8,    4,    2,
+        3,    5,    1,    6,   11,   10,    7,    1,   11,    0
     } ;
 
 static yyconst int yy_ec[256] =
@@ -375,9 +375,9 @@ char *yytext;
 #line 1 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
 #define INITIAL 0
 /* Inicio de la sección de definiciones. Aquí: */
-/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado */
+/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
 /* De esas formas podemos poner declaraciones y definiciones de C y directivas del preprocesador */
-/* 2. Los comentarios (sólo hay de múltiples líneas) sin sangría también se copian tal cual a la salida */
+/* 2. Los comentarios (sólo hay de múltiples líneas) sin sangría también se copian tal cual al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
 #line 8 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
 
 #include "general.h"
@@ -395,9 +395,9 @@ char *yytext;
 /* Declaraciones con cada nombre y su definición; se utilizan para simplificar las reglas */
 /* Fin de la sección de definiciones */
 /* Inicio de la sección de reglas. Aquí: */
-/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado */
+/* 1. Cualquier texto sangrado o encerrado entre '%{' y '%}' (estos últimos dos sin sangrar en líneas ocupadas únicamente por ellos) se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
 /* Esto podría utilizarse para declarar variables que son locales a la rutina de análisis léxico y (después de las declaraciones) al código que debe ejecutarse siempre que se entra a la rutina de análisis léxico */
-/* 2. NO pueden hacerse comentarios sin sangría, ya que estos no se copian literalmente a la salida */
+/* 2. NO pueden hacerse comentarios sin sangría, ya que estos no se copian literalmente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
 #line 402 "obj/Ejemplo_Calculadora_Notacion_Polaca_Inversa.lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
@@ -674,28 +674,35 @@ YY_RULE_SETUP
 case 7:
 YY_RULE_SETUP
 #line 55 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
-{ yylloc.last_column += yyleng; fprintf(stderr, "Flex: %d:%d: Error lexico: token no reconocido: %s", yylloc.first_line, yylloc.first_column, yytext); BEGIN(tokenNoReconocido); }
-	YY_BREAK
-
-case YY_STATE_EOF(tokenNoReconocido):
-#line 57 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
-{ 
-        fprintf(stderr, "\n");
-        BEGIN(INITIAL);
-    }
+{ yylloc.first_column = yylloc.last_column += yyleng; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 61 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
+#line 57 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
+{
+        yylloc.first_line = yylloc.last_line += yyleng;
+        yylloc.first_column = yylloc.last_column = INICIO_CONTEO_COLUMNA;
+        return '\n';
+    }
+	YY_BREAK
+case 9:
+YY_RULE_SETUP
+#line 63 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
+{ yylloc.last_column += yyleng; fprintf(stderr, "Flex: %d:%d: Error lexico: token no reconocido: %s", yylloc.first_line, yylloc.first_column, yytext); BEGIN(tokenNoReconocido); }
+	YY_BREAK
+
+case 10:
+YY_RULE_SETUP
+#line 65 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
 {
         yyless(0);
         fprintf(stderr, "\n");
         BEGIN(INITIAL);
     }
 	YY_BREAK
-case 9:
+case 11:
 YY_RULE_SETUP
-#line 66 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
+#line 70 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
 {
         yylloc.last_column += yyleng;
         fprintf(stderr, "%s\n", yytext);
@@ -703,30 +710,20 @@ YY_RULE_SETUP
     }
 	YY_BREAK
 
-case 10:
-YY_RULE_SETUP
-#line 73 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
-{ yylloc.first_column = yylloc.last_column += yyleng; }
-	YY_BREAK
-case 11:
-YY_RULE_SETUP
-#line 75 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
-{
-        yylloc.first_line = yylloc.last_line += yyleng;
-        yylloc.first_column = yylloc.last_column = INICIO_CONTEO_COLUMNA;
-        return '\n';
-    }
-	YY_BREAK
-case YY_STATE_EOF(INITIAL):
-#line 81 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
-{ return 0; }
-	YY_BREAK
+/* Reglas por defecto de Flex: */
+/* <*>.|\n { ECHO; } */
+/* (ECHO; escribe yytext en la salida del escáner: FILE* yyout (variable global a la cual por defecto se le asigna stdout)) */
+/* <<EOF>> { yyterminate(); } */
+/* (yyterminate(); hace que la función yylex finalice retornando un 0, indicando un fin-de-entrada (EOF)) */
 case 12:
 YY_RULE_SETUP
 #line 83 "src/Ejemplo_Calculadora_Notacion_Polaca_Inversa.l"
 ECHO;
 	YY_BREAK
-#line 730 "obj/Ejemplo_Calculadora_Notacion_Polaca_Inversa.lex.yy.c"
+#line 724 "obj/Ejemplo_Calculadora_Notacion_Polaca_Inversa.lex.yy.c"
+case YY_STATE_EOF(INITIAL):
+case YY_STATE_EOF(tokenNoReconocido):
+	yyterminate();
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1616,6 +1613,6 @@ int main()
 
 /* Inicio de la sección de código de usuario, la cual: */
 	/* 1. Se utiliza para rutinas de complemento que llaman al analizador léxico o son llamadas por este; la presencia de esta sección es opcional */
-    /* 2. Toda esta sección simplemente se copia íntegramente al archivo de salida del analizador léxico (scanner) generado */
+    /* 2. Toda esta sección simplemente se copia íntegramente al archivo de salida del analizador léxico (scanner) generado (*.lex.yy.c) */
 
 /* Fin de la sección de código de usuario */
