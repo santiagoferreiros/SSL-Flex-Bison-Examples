@@ -1,0 +1,304 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "make all",
+      "dependsOn": "",
+      "hide": false,
+      "icon": {"id": "tools"},
+      "isBackground": false,
+      "promptOnClose": false,
+      "detail": "Construir todos los programas y bibliotecas definidos",
+      "command": "make all",
+      "args": [],
+      "runOptions": {},
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {},
+        "shell": {}
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": ["$gcc"],
+    },
+    {
+      "label": "make cleandeps",
+      "dependsOn": "",
+      "hide": false,
+      "icon": {"id": "trash"},
+      "isBackground": false,
+      "promptOnClose": false,
+      "detail": "Eliminar los archivos asociados con la generación automática de dependencias",
+      "command": "make cleandeps",
+      "args": [],
+      "runOptions": {},
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {},
+        "shell": {}
+      },
+      "group": {
+        "kind": "none",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "make mostlyclean",
+      "dependsOn": "",
+      "hide": false,
+      "icon": {"id": "trash"},
+      "isBackground": false,
+      "promptOnClose": false,
+      "detail": "make cleandeps + Eliminar los programas y archivos de salida del compilador",
+      "command": "make mostlyclean",
+      "args": [],
+      "runOptions": {},
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {},
+        "shell": {}
+      },
+      "group": {
+        "kind": "none",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "make maintainer-clean",
+      "dependsOn": "",
+      "hide": false,
+      "icon": {"id": "trash"},
+      "isBackground": false,
+      "promptOnClose": false,
+      "detail": "make mostlyclean + Eliminar los archivos generados por YACC y LEX",
+      "command": "make maintainer-clean",
+      "args": [],
+      "runOptions": {},
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {},
+        "shell": {}
+      },
+      "group": {
+        "kind": "none",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "make cleandirs",
+      "dependsOn": "",
+      "hide": false,
+      "icon": {"id": "trash"},
+      "isBackground": false,
+      "promptOnClose": false,
+      "detail": "make maintainer-clean + Eliminar los directorios objetivo",
+      "command": "make cleandirs",
+      "args": [],
+      "runOptions": {},
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {},
+        "shell": {}
+      },
+      "group": {
+        "kind": "none",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "make bin/example",
+      "dependsOn": "",
+      "hide": false,
+      "icon": {"id": "file-binary"},
+      "isBackground": false,
+      "promptOnClose": false,
+      "detail": "Construir el programa: bin/example",
+      "command": "make bin/example",
+      "args": [],
+      "runOptions": {},
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {},
+        "shell": {}
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": ["$gcc"],
+    },
+    {
+      "label": "make bin/example.exe",
+      "dependsOn": "",
+      "hide": false,
+      "icon": {"id": "file-binary"},
+      "isBackground": false,
+      "promptOnClose": false,
+      "detail": "Construir el programa: bin/example.exe",
+      "command": "make bin/example.exe",
+      "args": [],
+      "runOptions": {},
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {},
+        "shell": {}
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": ["$gcc"],
+    },
+    {
+      "label": "make run-example",
+      "dependsOn": "",
+      "hide": false,
+      "icon": {"id": "run"},
+      "isBackground": false,
+      "promptOnClose": false,
+      "detail": "Ejecutar en esta misma ventana el programa example",
+      "command": "make run-example",
+      "args": [],
+      "runOptions": {},
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {},
+        "shell": {}
+      },
+      "group": {
+        "kind": "none",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "make gdb-example",
+      "dependsOn": "",
+      "hide": false,
+      "icon": {"id": "debug-console"},
+      "isBackground": false,
+      "promptOnClose": false,
+      "detail": "Depurar en esta misma ventana por línea de comandos el programa example",
+      "command": "make gdb-example",
+      "args": [],
+      "runOptions": {},
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {},
+        "shell": {}
+      },
+      "group": {
+        "kind": "none",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "make valgrind-none-example",
+      "dependsOn": "",
+      "hide": true,
+      "icon": {"id": "debug"},
+      "isBackground": false,
+      "promptOnClose": false,
+      "detail": "Ejecutar en esta misma ventana Valgrind con ninguna herramienta sobre el programa example",
+      "command": "make valgrind-none-example",
+      "args": [],
+      "runOptions": {},
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {},
+        "shell": {}
+      },
+      "group": {
+        "kind": "none",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "make valgrind-memcheck-example",
+      "dependsOn": "",
+      "hide": true,
+      "icon": {"id": "debug"},
+      "isBackground": false,
+      "promptOnClose": false,
+      "detail": "Ejecutar en esta misma ventana Valgrind con la herramienta memcheck sobre el programa example",
+      "command": "make valgrind-memcheck-example",
+      "args": [],
+      "runOptions": {},
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {},
+        "shell": {}
+      },
+      "group": {
+        "kind": "none",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
