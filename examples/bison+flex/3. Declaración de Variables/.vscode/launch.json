@@ -1,0 +1,47 @@
+{
+  // See https://go.microsoft.com/fwlink/?linkid=830387
+  // for the documentation about the launch.json format
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "(gdb) Launch bin/example",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/example",
+      "args": [],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}/bin",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "make bin/example"
+    },
+    {
+      "name": "(gdb) Launch bin/example.exe",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/example.exe",
+      "args": [],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}/bin",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "make bin/example.exe"
+    }
+  ]
+}
