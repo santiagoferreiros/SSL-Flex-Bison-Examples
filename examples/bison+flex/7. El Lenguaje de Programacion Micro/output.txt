@@ -1,0 +1,141 @@
+Starting parse
+Entering state 0
+Reading a token: Next token is token "inicio" (: )
+Shifting token "inicio" (: )
+Entering state 1
+Reading a token: Next token is token "leer" (: )
+Shifting token "leer" (: )
+Entering state 3
+Reading a token: Next token is token '(' (: )
+Shifting token '(' (: )
+Entering state 9
+Reading a token: Next token is token IDENTIFICADOR (: )
+Shifting token IDENTIFICADOR (: )
+Entering state 14
+Reducing stack by rule 7 (line 129):
+   $1 = token IDENTIFICADOR (: )
+-> $$ = nterm listaIdentificadores (: )
+Stack now 0 1 3 9
+Entering state 15
+Reading a token: Next token is token ',' (: )
+Shifting token ',' (: )
+Entering state 24
+Reading a token: Next token is token IDENTIFICADOR (: )
+Shifting token IDENTIFICADOR (: )
+Entering state 32
+Reducing stack by rule 8 (line 133):
+   $1 = nterm listaIdentificadores (: )
+   $2 = token ',' (: )
+   $3 = token IDENTIFICADOR (: )
+-> $$ = nterm listaIdentificadores (: )
+Stack now 0 1 3 9
+Entering state 15
+Reading a token: Next token is token ')' (: )
+Shifting token ')' (: )
+Entering state 23
+Reading a token: Next token is token ';' (: )
+Shifting token ';' (: )
+Entering state 31
+Reducing stack by rule 5 (line 118):
+   $1 = token "leer" (: )
+   $2 = token '(' (: )
+   $3 = nterm listaIdentificadores (: )
+   $4 = token ')' (: )
+   $5 = token ';' (: )
+-> $$ = nterm sentencia (: )
+Stack now 0 1
+Entering state 7
+Reducing stack by rule 2 (line 103):
+   $1 = nterm sentencia (: )
+-> $$ = nterm listaSentencias (: )
+Stack now 0 1
+Entering state 6
+Reading a token: Next token is token IDENTIFICADOR (: )
+Shifting token IDENTIFICADOR (: )
+Entering state 5
+Reading a token: Next token is token ":=" (: )
+Shifting token ":=" (: )
+Entering state 11
+Reading a token: Next token is token IDENTIFICADOR (: )
+Shifting token IDENTIFICADOR (: )
+Entering state 17
+Reducing stack by rule 14 (line 211):
+   $1 = token IDENTIFICADOR (: )
+-> $$ = nterm primaria (: )
+Stack now 0 1 6 5 11
+Entering state 21
+Reducing stack by rule 11 (line 151):
+   $1 = nterm primaria (: )
+-> $$ = nterm expresion (: )
+Stack now 0 1 6 5 11
+Entering state 22
+Reading a token: Next token is token '+' (: )
+Shifting token '+' (: )
+Entering state 28
+Reading a token: Next token is token '(' (: )
+Shifting token '(' (: )
+Entering state 18
+Reading a token: Next token is token IDENTIFICADOR (: )
+Shifting token IDENTIFICADOR (: )
+Entering state 17
+Reducing stack by rule 14 (line 211):
+   $1 = token IDENTIFICADOR (: )
+-> $$ = nterm primaria (: )
+Stack now 0 1 6 5 11 22 28 18
+Entering state 21
+Reducing stack by rule 11 (line 151):
+   $1 = nterm primaria (: )
+-> $$ = nterm expresion (: )
+Stack now 0 1 6 5 11 22 28 18
+Entering state 25
+Reading a token: Next token is token '-' (: )
+Shifting token '-' (: )
+Entering state 29
+Reading a token: Next token is token CONSTANTE (: )
+Shifting token CONSTANTE (: )
+Entering state 16
+Reducing stack by rule 15 (line 218):
+   $1 = token CONSTANTE (: )
+-> $$ = nterm primaria (: )
+Stack now 0 1 6 5 11 22 28 18 25 29
+Entering state 37
+Reducing stack by rule 13 (line 189):
+   $1 = nterm expresion (: )
+   $2 = token '-' (: )
+   $3 = nterm primaria (: )
+-> $$ = nterm expresion (: )
+Stack now 0 1 6 5 11 22 28 18
+Entering state 25
+Reading a token: Next token is token ')' (: )
+Shifting token ')' (: )
+Entering state 33
+Reducing stack by rule 16 (line 225):
+   $1 = token '(' (: )
+   $2 = nterm expresion (: )
+   $3 = token ')' (: )
+-> $$ = nterm primaria (: )
+Stack now 0 1 6 5 11 22 28
+Entering state 36
+Reducing stack by rule 12 (line 170):
+   $1 = nterm expresion (: )
+   $2 = token '+' (: )
+   $3 = nterm primaria (: )
+-> $$ = nterm expresion (: )
+Stack now 0 1 6 5 11
+Entering state 22
+Reading a token: Next token is token ';' (: )
+Shifting token ';' (: )
+Entering state 30
+Reducing stack by rule 4 (line 114):
+   $1 = token IDENTIFICADOR (: )
+   $2 = token ":=" (: )
+   $3 = nterm expresion (: )
+   $4 = token ';' (: )
+-> $$ = nterm sentencia (: )
+Stack now 0 1 6
+Entering state 13
+Reducing stack by rule 3 (line 107):
+   $1 = nterm listaSentencias (: )
+   $2 = nterm sentencia (: )
+-> $$ = nterm listaSentencias (: )
+Stack now 0 
