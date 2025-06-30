@@ -4,11 +4,12 @@
 #include <string.h>
 
 int yylex();
-int yywrap(){
-	return(1);
+
+int yywrap() {
+	return 1;
 }
 
-void yyerror (char const *s) {
+void yyerror (const char *s) {
    fprintf (stderr, "%s\n", s);
 }
 
@@ -18,110 +19,88 @@ void yyerror (char const *s) {
 
 %union {
 
- struct yylval_struct
-  {
-      int tipo;
-      int valor_entero;
-      float valor_real;
-  } mystruct;
+    struct yylval_struct
+    {
+        int tipo;
+        int valor_entero;
+        float valor_real;
+    } mystruct;
 
 }
 
 %token <mystruct> NUMERO_ENTERO
 %token <mystruct> NUMERO_REAL
-%token <mystruct> error
+//%token <mystruct> error
 
 %type <mystruct> expresion
 
 %% /* A continuacion las reglas gramaticales y las acciones */
 
-input:  /* vacio */
-        | input line
-;
+input
+    : /* vacio */
+    | input line
+    ;
 
-line:   '\n'
-        | expresion '\n'  {if($<mystruct>1.tipo==1){printf ("El resultado de la expresion es: %d \n", $<mystruct>1.valor_entero);}else{printf("El resultado de la expresion es: %g \n", $<mystruct>1.valor_real);} };
+line
+    : '\n'
+    | expresion '\n'
+        {
+            if ($<mystruct>1.tipo == 1)
+            {
+                printf ("El resultado de la expresion es: %d \n", $<mystruct>1.valor_entero);
+            } else {
+                printf("El resultado de la expresion es: %g \n", $<mystruct>1.valor_real);
+            }
+        }
+    ;
 
-expresion:  NUMERO_ENTERO {$<mystruct>$.tipo=$<mystruct>1.tipo;$<mystruct>$.valor_entero=$<mystruct>1.valor_entero;}
-	  		| NUMERO_REAL {$<mystruct>$.tipo=$<mystruct>1.tipo;$<mystruct>$.valor_real=$<mystruct>1.valor_real;}	
-	  		| expresion '+' expresion { if($<mystruct>1.tipo==$<mystruct>3.tipo)
-    
-    { 
-        if($<mystruct>1.tipo==1)
-    
+expresion
+    : NUMERO_ENTERO {$<mystruct>$.tipo=$<mystruct>1.tipo;$<mystruct>$.valor_entero=$<mystruct>1.valor_entero;}
+    | NUMERO_REAL {$<mystruct>$.tipo=$<mystruct>1.tipo;$<mystruct>$.valor_real=$<mystruct>1.valor_real;}	
+    | expresion '+' expresion
         {
-            $<mystruct>$.valor_entero=$<mystruct>1.valor_entero+$<mystruct>3.valor_entero;
+            if ($<mystruct>1.tipo == $<mystruct>3.tipo) { 
+                if ($<mystruct>1.tipo == 1) {
+                    $<mystruct>$.valor_entero = $<mystruct>1.valor_entero + $<mystruct>3.valor_entero;
+                } else {
+                    $<mystruct>$.valor_real = $<mystruct>1.valor_real + $<mystruct>3.valor_real;
+                }
+            } else {
+                printf("Los operandos son de distinto tipo \n");
+            }
         }
-        
-        else
-        
+    | expresion '-' expresion
         {
-            $<mystruct>$.valor_real=$<mystruct>1.valor_real+$<mystruct>3.valor_real;
+            if($<mystruct>1.tipo == $<mystruct>3.tipo) {
+                if($<mystruct>1.tipo == 1) {
+                    $<mystruct>$.valor_entero = $<mystruct>1.valor_entero + $<mystruct>3.valor_entero;
+                } else {
+                    $<mystruct>$.valor_real = $<mystruct>1.valor_real + $<mystruct>3.valor_real;
+                }
+            } else {
+                printf("Los operandos son de distinto tipo \n");
+            }
         }
-    }
-        
-    else
-    
-    {
-        printf("Los operandos son de distinto tipo \n");
-    }
-        
-}
-	  		| expresion '-' expresion { if($<mystruct>1.tipo==$<mystruct>3.tipo)
-    
-    { 
-        if($<mystruct>1.tipo==1)
-    
+    | expresion '*' expresion
         {
-            $<mystruct>$.valor_entero=$<mystruct>1.valor_entero+$<mystruct>3.valor_entero;
+            if($<mystruct>1.tipo == $<mystruct>3.tipo) { 
+                if($<mystruct>1.tipo == 1) {
+                    $<mystruct>$.valor_entero = $<mystruct>1.valor_entero + $<mystruct>3.valor_entero;
+                } else {
+                    $<mystruct>$.valor_real = $<mystruct>1.valor_real + $<mystruct>3.valor_real;
+                }
+            } else {
+                printf("Los operandos son de distinto tipo \n");
+            }
         }
-        
-        else
-        
-        {
-            $<mystruct>$.valor_real=$<mystruct>1.valor_real+$<mystruct>3.valor_real;
-        }
-    }
-        
-    else
-    
-    {
-        printf("Los operandos son de distinto tipo \n");
-    }
-        
-}
-	  		| expresion '*' expresion { if($<mystruct>1.tipo==$<mystruct>3.tipo)
-    
-    { 
-        if($<mystruct>1.tipo==1)
-    
-        {
-            $<mystruct>$.valor_entero=$<mystruct>1.valor_entero+$<mystruct>3.valor_entero;
-        }
-        
-        else
-        
-        {
-            $<mystruct>$.valor_real=$<mystruct>1.valor_real+$<mystruct>3.valor_real;
-        }
-    }
-        
-    else
-    
-    {
-        printf("Los operandos son de distinto tipo \n");
-    }
-        
-}
-;
+    ;
 
 %%
 
-int main ()
-{
+int main(void) {
     #if YYDEBUG
       yydebug = 1;
     #endif
 	
-	yyparse ();
+	yyparse();
 }
