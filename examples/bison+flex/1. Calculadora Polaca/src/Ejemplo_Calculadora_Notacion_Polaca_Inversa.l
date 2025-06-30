@@ -38,7 +38,7 @@ digito [0-9]
 
 {digito}+ {
         yylloc.last_column += yyleng;
-        yylval.unsigned_long_type = strtoul(yytext, NULL, 0);
+        yylval.long_type = (long) strtoul(yytext, NULL, 0);
         return NUM;
     }
 

@@ -28,14 +28,14 @@ void yyerror(const char*);
 
 	/* Para especificar la colección completa de posibles tipos de datos para los valores semánticos */
 %union {
-	unsigned long unsigned_long_type;
+	long long_type;
 }
 
         /* */
-%token <unsigned_long_type> NUM
+%token <long_type> NUM
 
 	/* */
-%type <unsigned_long_type> exp
+%type <long_type> exp
 
 	/* Para especificar el no-terminal de inicio de la gramática (el axioma). Si esto se omitiera, se asumiría que es el no-terminal de la primera regla */
 %start input
@@ -52,7 +52,7 @@ input
 
 line
         : '\n'
-        | exp '\n'  { printf ("El resultado de la expresion es: %lu\n", $1); YYACCEPT; } /* la macro 'YYACEPT;' produce que la función yyparse() retorne inmediatamente con valor 0 */
+        | exp '\n'  { printf ("El resultado de la expresion es: %ld\n", $1); YYACCEPT; } /* la macro 'YYACEPT;' produce que la función yyparse() retorne inmediatamente con valor 0 */
         ;
 
 exp
